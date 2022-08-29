@@ -1,0 +1,50 @@
+.searchbar-input-container.sc-ion-searchbar-ios {
+    max-height: 32px !important;
+    margin-top: 0.5em !important;
+}
+
+.searchbar-input {
+    border-radius: 25px !important;
+    background: rgba(var(--ion-color-contrast-rgb), 0.15) !important;
+    padding-left: 35px !important;
+    font-size: 0.95rem !important;
+}
+
+.searchbar-search-icon.sc-ion-searchbar-ios {
+    margin-left: 0.35em !important;
+    width: 18px !important;
+}
+
+.sc-ion-label-ios-s h2 {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+}
+
+.order-badge {
+    --background: #b2a8f5 !important;
+    font-size: 9px !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0.1rem;
+}
+
+.or-cart {
+    padding-left: 10px !important;
+    margin-left: 0px !important;
+}
+
+.or-cart hr {
+    border-bottom: 1px solid #c9c3f3;
+}
+
+.or-cart ion-text span {
+    color: #d3ceff !important;
+    font-size: 0.85rem !important;
+}
+
+.or-cart ion-text {
+    font-size: 0.95rem !important;
+}
+.or-cart ion-text p {
+    margin-bottom: 0.7em !important;
+    letter-spacing: 0.08rem !important;
+}

@@ -2,5 +2,10 @@
 	"appId": "io.ionic.starter",
 	"appName": "EyePax",
 	"webDir": "dist",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	},
 	"bundledWebRuntime": false
 }
