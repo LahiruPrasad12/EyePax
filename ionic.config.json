@@ -1,0 +1,8 @@
+{
+  "name": "EyePax",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue",
+  "id": "efa79fa5"
+}
