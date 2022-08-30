@@ -1,5 +1,5 @@
 {
-  "name": "eye-pax",
+  "name": "hyre",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,34 +7,61 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "resources": "capacitor-resources -p android,ios",
+    "build-netifly-commit-push": "vue-cli-service build && git add . && git commit -m 'LIVE commit' && git push",
+    "build-web": "ionic build && git add . && git commit -m 'WEB BUILD' && git push",
+    "build-android": "ionic build && ionic capacitor add android && npx cap open android"
   },
   "dependencies": {
-    "@capacitor/app": "4.0.1",
-    "@capacitor/core": "4.1.0",
-    "@capacitor/haptics": "4.0.1",
-    "@capacitor/keyboard": "4.0.1",
-    "@capacitor/status-bar": "4.0.1",
-    "@ionic/vue": "^6.0.0",
-    "@ionic/vue-router": "^6.0.0",
+    "@awesome-cordova-plugins/toast": "^5.38.0",
+    "@capacitor/android": "3.7.0",
+    "@capacitor/app": "1.0.7",
+    "@capacitor/core": "^3.3.3",
+    "@capacitor/haptics": "1.1.3",
+    "@capacitor/ios": "3.5.1",
+    "@capacitor/keyboard": "1.2.0",
+    "@capacitor/status-bar": "1.0.6",
+    "@ionic/core": "^6.0.3",
+    "@ionic/vue": "^6.0.1",
+    "@ionic/vue-router": "^6.0.1",
+    "@ionited/tooltip-vue": "^0.1.2",
+    "@types/vue-router": "^2.0.0",
+    "axios": "^0.25.0",
+    "bootstrap": "^5.1.3",
+    "cordova-plugin-x-toast": "^2.7.3",
     "core-js": "^3.6.5",
-    "ionicons": "^6.0.3",
+    "date-diff": "^0.2.2",
+    "date-fns": "^2.28.0",
+    "ionicons": "^6.0.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "vee-validate": "^4.5.8",
     "vue": "^3.2.21",
-    "vue-router": "^4.0.12"
+    "vue-awesome-swiper": "^5.0.1",
+    "vue-axios": "^3.4.0",
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.2"
+  },
+  "eslintConfig": {
+    "rules": {
+      "strict": "off",
+      "no-unused-components": "off",
+      "@typescript-eslint/camelcase": [
+        "error",
+        {
+          "properties": "never"
+        }
+      ]
+    }
   },
   "devDependencies": {
-    "@capacitor/cli": "4.1.0",
-    "@types/jest": "^27.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.6.0",
-    "@typescript-eslint/parser": "^5.6.0",
+    "@capacitor/cli": "^3.3.3",
     "@vue/cli-plugin-babel": "~5.0.0-rc.1",
     "@vue/cli-plugin-e2e-cypress": "~5.0.0-rc.1",
-    "@vue/cli-plugin-eslint": "~5.0.0-rc.1",
     "@vue/cli-plugin-router": "~5.0.0-rc.1",
-    "@vue/cli-plugin-typescript": "~5.0.0-rc.1",
     "@vue/cli-plugin-unit-jest": "~5.0.0-rc.1",
     "@vue/cli-service": "~5.0.0-rc.1",
-    "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/test-utils": "^2.0.0-rc.16",
     "@vue/vue3-jest": "^27.0.0-alpha.3",
     "babel-jest": "^27.3.1",
@@ -42,8 +69,7 @@
     "eslint": "^8.4.1",
     "eslint-plugin-vue": "^8.2.0",
     "jest": "^27.3.1",
-    "ts-jest": "^27.0.7",
-    "typescript": "^4.3.5"
+    "ts-jest": "^27.0.7"
   },
   "description": "An Ionic project"
 }
