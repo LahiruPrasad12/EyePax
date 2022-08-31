@@ -88,7 +88,6 @@ export default defineComponent({
       tab2: "",
       tab3: "",
       tab4: "",
-      // id: this.$route.params.auth_practice_id,
     };
   }
 });

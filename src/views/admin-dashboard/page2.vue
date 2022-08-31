@@ -1,6 +1,7 @@
 <template>
-
+  <ion-page>
    <h1>page 2</h1>
+  </ion-page>
 </template>
 
 <script>

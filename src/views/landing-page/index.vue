@@ -80,19 +80,19 @@ export default defineComponent({
   data() {
     return {
       calendarOutline,
-      hiddenPage:true
+      hiddenPage:false
 
 
     };
   },
 
-  mounted() {
-    if(localStorage.getItem('token')){
-      router.push('/select-practices')
-    }else {
-      this.hiddenPage = false
-    }
-  }
+  // mounted() {
+  //   if(localStorage.getItem('token')){
+  //     router.push('/select-practices')
+  //   }else {
+  //     this.hiddenPage = false
+  //   }
+  // }
 });
 </script>
 
