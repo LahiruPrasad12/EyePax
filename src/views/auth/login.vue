@@ -263,7 +263,7 @@ export default defineComponent({
         await this.successToast('You are logged in successfully')
         this.$router.push('/admin_home')
       } catch (e) {
-        await this.dangerToast('Oops!! your username or password is incorrect')
+        await this.dangerToast(e.message)
       }
       this.is_btn_loading = false
     },
@@ -271,6 +271,7 @@ export default defineComponent({
     passwordTongle() {
       this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
     }
+
   },
 });
 </script>
