@@ -252,10 +252,11 @@ export default defineComponent({
          email: this.email,
          password: this.password
        }
-       await authAPI.login(payload)
-       alert('ok')
+       let respond = (await authAPI.login(payload)).data
+       localStorage.setItem('token',respond.token)
+       await this.successToast('You are logged in successfully')
      }catch (e) {
-       alert('ok')
+       await this.dangerToast('Oops!! your username or password is incorrect')
      }
     },
 

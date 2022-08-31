@@ -24,10 +24,14 @@ import '@ionic/vue/css/display.css';
 import './theme/variables.css';
 import './theme/main.css';
 
+
+import toastMixin from "@/mixins/toastMixin";
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
-
+app.mixin({
+  mixins: [toastMixin]
+});
 router.isReady().then(() => {
   app.mount('#app');
 });
