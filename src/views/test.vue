@@ -1,95 +1,67 @@
 <template>
-  <!-- The reorder gesture is disabled by default, enable it to drag and drop items -->
-  <ion-reorder-group :disabled="false">
-    <!-- Default reorder icon, end aligned items -->
-    <ion-item>
-      <ion-label>
-        Item 1
-      </ion-label>
-      <ion-reorder slot="end"></ion-reorder>
-    </ion-item>
+  <ion-page>
+      <ion-tabs @ionTabsWillChange="beforeTabChange" @ionTabsDidChange="afterTabChange">
+        <ion-router-outlet></ion-router-outlet>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button tab="schedule" href="/tabs/schedule">
+            <ion-icon ></ion-icon>
+            <ion-label>Schedule</ion-label>
+<!--            <ion-badge>6</ion-badge>-->
+          </ion-tab-button>
 
-    <ion-item>
-      <ion-label>
-        Item 2
-      </ion-label>
-      <ion-reorder slot="end"></ion-reorder>
-    </ion-item>
-
-    <!-- Default reorder icon, start aligned items -->
-    <ion-item>
-      <ion-reorder slot="start"></ion-reorder>
-      <ion-label>
-        Item 3
-      </ion-label>
-    </ion-item>
-
-    <ion-item>
-      <ion-reorder slot="start"></ion-reorder>
-      <ion-label>
-        Item 4
-      </ion-label>
-    </ion-item>
-
-    <!-- Custom reorder icon end items -->
-    <ion-item>
-      <ion-label>
-        Item 5
-      </ion-label>
-      <ion-reorder slot="end">
-        <ion-icon name="pizza"></ion-icon>
-      </ion-reorder>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>
-        Item 6
-      </ion-label>
-      <ion-reorder slot="end">
-        <ion-icon name="pizza"></ion-icon>
-      </ion-reorder>
-    </ion-item>
-
-    <!-- Items wrapped in a reorder, entire item can be dragged -->
-    <ion-reorder>
-      <ion-item>
-        <ion-label>
-          Item 7
-        </ion-label>
-      </ion-item>
-    </ion-reorder>
-
-    <ion-reorder>
-      <ion-item>
-        <ion-label>
-          Item 8
-        </ion-label>
-      </ion-item>
-    </ion-reorder>
-  </ion-reorder-group>
+          <ion-tab-button tab="speakers" href="/tabs/speakers">
+            <ion-icon ></ion-icon>
+            <ion-label>Speakers</ion-label>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    <!--      <ion-tab-bar slot="bottom">-->
+    <!--      </ion-tab-bar>-->
+  </ion-page>
 </template>
 
 <script>
-import {
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonReorder,
-  IonReorderGroup
-} from '@ionic/vue';
-import { pizza } from 'ionicons/icons';
-import { defineComponent } from 'vue';
+import {IonIcon, IonLabel, IonPage, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from '@ionic/vue';
+import {cafeOutline, calendarOutline, homeOutline, timeOutline} from 'ionicons/icons';
+import {useRouter} from "vue-router";
+import {defineComponent} from "vue";
 
 export default defineComponent({
-  components: {
-    IonIcon,
-    IonItem,
-    IonLabel,
-    IonReorder,
-    IonReorderGroup
+  components: {IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet},
+  methods: {
+    async beforeTabChange() {
+      this.no -= 1;
+      this.tab1 = "dash_board";
+      this.tab2 = "my_Shifts";
+      this.tab3 = "time_sheet";
+      this.tab4 = "leaves";
+    },
+    async afterTabChange(tabName) {
+      this.tabName = tabName;
+    },
   },
   setup() {
-    return { pizza }
+
+    const router = useRouter();
+    return {
+      no: 1,
+      calendarOutline,
+      cafeOutline,
+      homeOutline,
+      timeOutline,
+      router,
+    }
+  },
+  data() {
+    return {
+      no: 1,
+      tabName: "dash_board",
+      tab1: "",
+      tab2: "",
+      tab3: "",
+      tab4: "",
+      // id: this.$route.params.auth_practice_id,
+    };
   }
 });
 </script>
