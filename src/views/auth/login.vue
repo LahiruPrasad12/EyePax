@@ -78,9 +78,11 @@
           <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-col style="">
               <ion-button
+                  :disabled="is_btn_loading"
                   expand="full"
                   style="height: 50px;"
                   @click="submit">
+                <ion-spinner name="circles" :hidden="!is_btn_loading"></ion-spinner>
                 LOGIN
               </ion-button>
             </ion-col>
@@ -120,10 +122,11 @@ import {
   IonLabel,
   IonPage,
   IonRow,
+  IonSpinner,
   IonText,
   IonThumbnail,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from '@ionic/vue';
 import {defineComponent} from 'vue';
 import {useRouter} from "vue-router";
@@ -136,6 +139,7 @@ import authAPI from '../../apis/modules/auth_api'
 export default defineComponent({
   name: 'Login',
   components: {
+    IonSpinner,
     IonGrid,
     IonText,
     IonIcon,
@@ -159,6 +163,7 @@ export default defineComponent({
   },
   data() {
     return {
+      is_btn_loading:false,
       v: "",
       errors: "",
       email: "",
@@ -247,17 +252,19 @@ export default defineComponent({
       }
     },
     async Login() {
-     try{
-       let payload = {
-         email: this.email,
-         password: this.password
-       }
-       let respond = (await authAPI.login(payload)).data
-       localStorage.setItem('token',respond.token)
-       await this.successToast('You are logged in successfully')
-     }catch (e) {
-       await this.dangerToast('Oops!! your username or password is incorrect')
-     }
+      try {
+        this.is_btn_loading = true
+        let payload = {
+          email: this.email,
+          password: this.password
+        }
+        let respond = (await authAPI.login(payload)).data
+        localStorage.setItem('token', respond.token)
+        await this.successToast('You are logged in successfully')
+      } catch (e) {
+        await this.dangerToast('Oops!! your username or password is incorrect')
+      }
+      this.is_btn_loading = false
     },
 
     passwordTongle() {

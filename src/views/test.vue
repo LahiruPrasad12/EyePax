@@ -1,56 +1,95 @@
 <template>
-  <ion-page>
-    <ion-content class="ion-padding">
-      <ion-button @click="openToast">Open Toast</ion-button>
-      <ion-button @click="openToastOptions">Open Toast: Options</ion-button>
-    </ion-content>
-  </ion-page>
+  <!-- The reorder gesture is disabled by default, enable it to drag and drop items -->
+  <ion-reorder-group :disabled="false">
+    <!-- Default reorder icon, end aligned items -->
+    <ion-item>
+      <ion-label>
+        Item 1
+      </ion-label>
+      <ion-reorder slot="end"></ion-reorder>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Item 2
+      </ion-label>
+      <ion-reorder slot="end"></ion-reorder>
+    </ion-item>
+
+    <!-- Default reorder icon, start aligned items -->
+    <ion-item>
+      <ion-reorder slot="start"></ion-reorder>
+      <ion-label>
+        Item 3
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-reorder slot="start"></ion-reorder>
+      <ion-label>
+        Item 4
+      </ion-label>
+    </ion-item>
+
+    <!-- Custom reorder icon end items -->
+    <ion-item>
+      <ion-label>
+        Item 5
+      </ion-label>
+      <ion-reorder slot="end">
+        <ion-icon name="pizza"></ion-icon>
+      </ion-reorder>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Item 6
+      </ion-label>
+      <ion-reorder slot="end">
+        <ion-icon name="pizza"></ion-icon>
+      </ion-reorder>
+    </ion-item>
+
+    <!-- Items wrapped in a reorder, entire item can be dragged -->
+    <ion-reorder>
+      <ion-item>
+        <ion-label>
+          Item 7
+        </ion-label>
+      </ion-item>
+    </ion-reorder>
+
+    <ion-reorder>
+      <ion-item>
+        <ion-label>
+          Item 8
+        </ion-label>
+      </ion-item>
+    </ion-reorder>
+  </ion-reorder-group>
 </template>
 
 <script>
-import { IonButton, IonContent, IonPage, toastController } from '@ionic/vue';
-import { informationCircle } from 'ionicons/icons';
+import {
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonReorder,
+  IonReorderGroup
+} from '@ionic/vue';
+import { pizza } from 'ionicons/icons';
+import { defineComponent } from 'vue';
 
-export default {
-  components: { IonButton, IonContent, IonPage },
-  methods: {
-    async openToast() {
-      const toast = await toastController
-          .create({
-            message: 'Your settings have been saved.',
-            duration: 2000
-          })
-      return toast.present();
-    },
-    async openToastOptions() {
-      const toast = await toastController
-          .create({
-            header: 'Toast header',
-            message: 'Click to Close',
-            icon: informationCircle,
-            position: 'top',
-            buttons: [
-              {
-                side: 'start',
-                icon: 'star',
-                text: 'Favorite',
-                handler: () => {
-                  console.log('Favorite clicked');
-                }
-              }, {
-                text: 'Done',
-                role: 'cancel',
-                handler: () => {
-                  console.log('Cancel clicked');
-                }
-              }
-            ]
-          })
-      await toast.present();
-
-      const { role } = await toast.onDidDismiss();
-      console.log('onDidDismiss resolved with role', role);
-    },
+export default defineComponent({
+  components: {
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonReorder,
+    IonReorderGroup
   },
-}
+  setup() {
+    return { pizza }
+  }
+});
 </script>
