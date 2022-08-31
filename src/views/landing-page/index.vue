@@ -1,5 +1,5 @@
 <template>
-  <ion-page :hidden="hiddenPage">
+  <ion-page>
     <ion-content
         class="login-wrap">
       <div id="header">

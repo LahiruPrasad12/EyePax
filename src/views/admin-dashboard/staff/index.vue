@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true" collapse="fade">
       <ion-toolbar>
-        <ion-title>Header</ion-title>
+        <ion-title>Staff Page</ion-title>
       </ion-toolbar>
     </ion-header>
 

@@ -261,7 +261,7 @@ export default defineComponent({
         let respond = (await authAPI.login(payload)).data
         localStorage.setItem('token', respond.token)
         await this.successToast('You are logged in successfully')
-        this.$router.push('/admin-home')
+        this.$router.push('/admin_home')
       } catch (e) {
         await this.dangerToast('Oops!! your username or password is incorrect')
       }

@@ -5,6 +5,10 @@ import TabsPage from '../views/admin-dashboard/index'
 const routes = [
     ...Auth,
     {
+        path: '/',
+        component: () => import ('@/views/landing-page/index'),
+    },
+    {
         path: '/admin_home/',
         component: TabsPage,
         children: [
