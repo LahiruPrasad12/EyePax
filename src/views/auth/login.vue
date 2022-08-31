@@ -129,6 +129,7 @@ import {defineComponent} from 'vue';
 import {useRouter} from "vue-router";
 import {eye, eyeOff, lockClosedOutline, mailOutline} from 'ionicons/icons';
 import {defineRule, useField, useForm} from 'vee-validate';
+import authAPI from '../../apis/modules/auth_api'
 // import {toast} from "@/common/toast";
 
 /*dis*/
@@ -186,11 +187,6 @@ export default defineComponent({
 
     // checking valid email
     defineRule('email', email => {
-      // // Field is empty, should pass
-      // if (!email || !email.length) {
-      //   return true;
-      // }
-      // Check if email
       if (!/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/.test(email)) {
         return 'Please enter valid email address';
       }
@@ -199,11 +195,6 @@ export default defineComponent({
 
     // checking valid email
     defineRule('password', password => {
-      // // Field is empty, should pass
-      // if (!password || !password.length) {
-      //   return true;
-      // }
-      // Check if email
       if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()]).{8,}/.test(password)) {
         return 'Your password must contain at least one uppercase, one lowercase, one special character and one digit';
       }
@@ -256,7 +247,16 @@ export default defineComponent({
       }
     },
     async Login() {
-
+     try{
+       let payload = {
+         email: this.email,
+         password: this.password
+       }
+       await authAPI.login(payload)
+       alert('ok')
+     }catch (e) {
+       alert('ok')
+     }
     },
 
     passwordTongle() {
