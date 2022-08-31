@@ -16,7 +16,7 @@
         </ion-tab-button>
 
         <ion-tab-button
-            href="/admin-home/staff"
+            href="/admin_home/staff"
             tab="staff"
             v-on:click="afterTabChange('staff')">
           <ion-icon :icon="calendarOutline"/>
