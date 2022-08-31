@@ -6,7 +6,7 @@
       <ion-tab-bar style="padding-bottom:20px" slot="bottom">
 
         <ion-tab-button
-            href="/tabs/dash_board"
+            href="/admin_home/dash_board"
             selected
             tab="dash_board"
             v-on:click="afterTabChange('dash_board')">
@@ -16,12 +16,12 @@
         </ion-tab-button>
 
         <ion-tab-button
-            href="/tabs/my_Shifts"
-            tab="my_Shifts"
-            v-on:click="afterTabChange('my_Shifts')">
+            href="/admin-home/staff"
+            tab="staff"
+            v-on:click="afterTabChange('staff')">
           <ion-icon :icon="calendarOutline"/>
-          <ion-label v-show="tabName==='my_Shifts'" style="color: #000000;">My Shifts</ion-label>
-          <ion-label v-show="tabName !=='my_Shifts'" style="color: #ffffff;">My Shifts</ion-label>
+          <ion-label v-show="tabName==='staff'" style="color: #000000;">Staff</ion-label>
+          <ion-label v-show="tabName !=='staff'" style="color: #ffffff;">Staff</ion-label>
         </ion-tab-button>
 
         <ion-tab-button
@@ -60,7 +60,7 @@ export default defineComponent({
     async beforeTabChange() {
       this.no -= 1;
       this.tab1 = "dash_board";
-      this.tab2 = "my_Shifts";
+      this.tab2 = "staff";
       this.tab3 = "time_sheet";
       this.tab4 = "leaves";
     },

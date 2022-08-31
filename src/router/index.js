@@ -5,24 +5,20 @@ import TabsPage from '../views/admin-dashboard/index'
 const routes = [
     ...Auth,
     {
-        path: '/',
-        component: () => import ('@/views/landing-page/index'),
-    },
-    {
-        path: '/admin-home/',
+        path: '/admin_home/',
         component: TabsPage,
         children: [
             {
-                path: '/admin-home',
-                redirect: '/admin-home/dash_board'
+                path: '',
+                redirect: '/admin_home/dash_board'
             },
             {
                 path: 'dash_board',
-                component: () => import('@/views/admin-dashboard/page1')
+                component: () => import('@/views/admin-dashboard/dashboard/index')
             },
             {
-                path: 'my_Shifts',
-                component: () => import('@/views/admin-dashboard/page2')
+                path: 'staff',
+                component: () => import('@/views/admin-dashboard/staff/index')
             },
         ]
     }
