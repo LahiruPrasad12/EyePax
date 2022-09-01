@@ -14,18 +14,29 @@
       />
       <ion-list>
         <ion-list-header> All Staff Members</ion-list-header>
-
+        <ion-row>
+          <ion-col size="12">
+            <ion-list>
+              <ion-item>
+                <ion-select placeholder="Select role" v-model="selected_role">
+                  <ion-select-option value="staff">Staff</ion-select-option>
+                  <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
         <ion-item v-for="staff in all_staff">
           <ion-avatar slot="start">
             <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
           </ion-avatar>
           <ion-label>
             <ion-row>
-              <ion-col class="col-fist" size="7">
+              <ion-col class="col-fist" size="10">
                 <h2>{{ staff.first_name }} {{ staff.last_name }}</h2>
               </ion-col>
-              <ion-col class="col-fist" size="5">
-                <h2><a href="/test">View More>></a></h2>
+              <ion-col class="col-fist" size="2">
+                <h2><a><ion-icon :icon="pencil"></ion-icon></a></h2>
               </ion-col>
             </ion-row>
             <h3>{{ staff.email }}</h3>
@@ -46,6 +57,7 @@
 <script>
 import AddStaff from './models/add_staff'
 import {defineComponent} from 'vue';
+import {pencil} from 'ionicons/icons';
 import staff_apis from "@/apis/modules/admin_apis/staff_apis";
 import {
   IonAvatar,
@@ -73,7 +85,9 @@ import {
   IonRow,
   IonTitle,
   IonToolbar,
-  IonButton
+  IonButton,
+  IonSelect,
+  IonSelectOption
 } from '@ionic/vue';
 
 import {add} from 'ionicons/icons';
@@ -104,7 +118,9 @@ export default defineComponent({
     IonCol,
     IonNavLink,
     IonLoading,
-    IonFab, IonFabButton, IonIcon, IonFabList, IonButton
+    IonFab, IonFabButton, IonIcon, IonFabList, IonButton,
+    IonSelect,
+    IonSelectOption
   },
   name: "index",
   data() {
@@ -125,10 +141,16 @@ export default defineComponent({
     const router = useRouter();
     return {
       router,
-      add
+      add,
+      pencil
     }
   },
 
+  watch:{
+    selected_role(){
+      this.getAllStaff(this.selected_role)
+    }
+  },
   methods: {
     async getAllStaff(selected_role) {
       try {
