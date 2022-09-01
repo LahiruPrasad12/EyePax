@@ -33,6 +33,11 @@
           </ion-label>
         </ion-item>
       </ion-list>
+      <ion-fab slot="fixed" class="mb-3" horizontal="end" vertical="bottom">
+        <ion-fab-button>
+          <ion-icon :icon="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
     </ion-content>
 
     <ion-footer>
@@ -53,23 +58,32 @@ import {
   IonButtons,
   IonCol,
   IonContent,
+  IonFab,
+  IonFabButton,
+  IonFabList,
   IonFooter,
   IonHeader,
+  IonIcon,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
   IonLabel,
   IonList,
   IonListHeader,
+  IonLoading,
+  IonNavLink,
   IonPage,
   IonRefresher,
   IonRefresherContent,
   IonRow,
   IonTitle,
   IonToolbar,
-    IonNavLink,
-    IonLoading
+    IonButton
 } from '@ionic/vue';
+
+import {add} from 'ionicons/icons';
+import {useRouter} from "vue-router/dist/vue-router";
+
 
 export default defineComponent({
   components: {
@@ -93,12 +107,13 @@ export default defineComponent({
     IonRow,
     IonCol,
     IonNavLink,
-    IonLoading
+    IonLoading,
+    IonFab, IonFabButton, IonIcon, IonFabList,IonButton
   },
   name: "index",
   data() {
     return {
-      is_loading:false,
+      is_loading: false,
       selected_role: undefined,
       all_staff: [],
       pagination: {
@@ -107,6 +122,14 @@ export default defineComponent({
         total: 0,
         is_disabled: false,
       },
+    }
+  },
+
+  setup() {
+    const router = useRouter();
+    return {
+      router,
+      add
     }
   },
 
