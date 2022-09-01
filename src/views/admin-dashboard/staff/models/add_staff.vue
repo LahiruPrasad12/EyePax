@@ -1,48 +1,54 @@
 <template>
   <ion-modal ref="modal" :enter-animation="enterAnimation" :leave-animation="leaveAnimation" trigger="open-modal">
-    <ion-content fullscreen>
-      <ion-toolbar>
-        <ion-title>Add Staff</ion-title>
-        <ion-buttons slot="end">
-          <ion-button @click="dismiss()">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-label position="floating">First Name</ion-label>
-            <ion-input v-model="form.first_name" autofocus clear-input spellcheck type="text" required></ion-input>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label position="floating">Last Name</ion-label>
-            <ion-input v-model="form.last_name" clear-input type="text" required></ion-input>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label position="floating">Email</ion-label>
-            <ion-input v-model="form.email" clear-input type="email" required></ion-input>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label position="floating">Mobile</ion-label>
-            <ion-input v-model="form.mobile" clear-input type="number" required></ion-input>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label position="floating">Date Of Birth</ion-label>
-            <ion-input v-model="form.DOB" clear-input type="date" required></ion-input>
-          </ion-col>
-          <ion-col size="6">
-            <ion-select v-model="form.account_type" placeholder="Select role" required>
-              <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
-              <ion-select-option value="staff">Staff</ion-select-option>
-            </ion-select>
-          </ion-col>
-        </ion-row>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Add New Staff</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+          <ion-toolbar>
+            <ion-title>Add Staff</ion-title>
+            <ion-buttons slot="end">
+              <ion-button @click="dismiss()">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label position="floating">First Name</ion-label>
+                <ion-input v-model="form.first_name" autofocus clear-input required spellcheck type="text"></ion-input>
+              </ion-col>
+              <ion-col size="6">
+                <ion-label position="floating">Last Name</ion-label>
+                <ion-input v-model="form.last_name" clear-input required type="text"></ion-input>
+              </ion-col>
+              <ion-col size="6">
+                <ion-label position="floating">Email</ion-label>
+                <ion-input v-model="form.email" clear-input required type="email"></ion-input>
+              </ion-col>
+              <ion-col size="6">
+                <ion-label position="floating">Mobile</ion-label>
+                <ion-input v-model="form.mobile" clear-input required type="number"></ion-input>
+              </ion-col>
+              <ion-col size="6">
+                <ion-label position="floating">Date Of Birth</ion-label>
+                <ion-input v-model="form.DOB" clear-input required type="date"></ion-input>
+              </ion-col>
+              <ion-col size="6">
+                <ion-select v-model="form.account_type" placeholder="Select role" required>
+                  <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
+                  <ion-select-option value="staff">Staff</ion-select-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
 
-        <ion-button :disabled="is_btn_loading" class="mt-5" expand="block" shape="round" style="margin-top: 5%" @click="saveData">
-          <ion-spinner :hidden="!is_btn_loading" name="circles"></ion-spinner>
-          Save
-        </ion-button>
-      </ion-grid>
-    </ion-content>
+            <ion-button :disabled="is_btn_loading" class="mt-5" expand="block" shape="round" style="margin-top: 5%"
+                        @click="saveData">
+              <ion-spinner :hidden="!is_btn_loading" name="circles"></ion-spinner>
+              Save
+            </ion-button>
+          </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </ion-modal>
 </template>
 
@@ -67,6 +73,11 @@ import {
   IonSelect,
   IonSelectOption,
   IonSpinner,
+  IonPage,
+  IonCard,
+  IonCardHeader,
+  IonCardContent,
+  IonCardTitle,
   createAnimation
 } from "@ionic/vue";
 
@@ -89,7 +100,12 @@ export default {
     IonInput,
     IonSelect,
     IonSelectOption,
-    IonSpinner
+    IonSpinner,
+    IonPage,
+    IonCard,
+    IonCardHeader,
+    IonCardContent,
+    IonCardTitle
   },
   name: "add_student",
   setup() {

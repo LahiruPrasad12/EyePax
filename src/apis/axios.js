@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: process.env.VUE_APP_API_URL,
+    baseURL: process.env.VUE_APP_ORIGINAL_URL,
 });
 
 if (localStorage.getItem('token')) {

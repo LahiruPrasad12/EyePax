@@ -19,6 +19,7 @@
             <ion-list>
               <ion-item>
                 <ion-select placeholder="Select role" v-model="selected_role">
+                  <ion-select-option value="">None</ion-select-option>
                   <ion-select-option value="staff">Staff</ion-select-option>
                   <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
                 </ion-select>
@@ -49,10 +50,11 @@
           <ion-icon :icon="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
+      <AddStaff @closeModel="closeModel()"/>
+      <SingleStaff @openUpdateStaffModal="openUpdateStaffModal" @closeModel="closeModel()" ref="singleStaff"/>
+      <UpdateStaff ref="updateStaff"/>
     </ion-content>
-    <AddStaff @closeModel="closeModel()"/>
-    <SingleStaff @openUpdateStaffModal="openUpdateStaffModal" @closeModel="closeModel()" ref="singleStaff"/>
-    <UpdateStaff ref="updateStaff"/>
+
   </ion-page>
 
 </template>
