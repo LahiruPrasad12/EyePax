@@ -11,26 +11,26 @@
         <ion-row>
           <ion-col size="6">
             <ion-label position="floating">First Name</ion-label>
-            <ion-input v-model="form.first_name" autofocus clear-input spellcheck type="text"></ion-input>
+            <ion-input v-model="form.first_name" autofocus clear-input spellcheck type="text" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Last Name</ion-label>
-            <ion-input v-model="form.last_name" clear-input type="text"></ion-input>
+            <ion-input v-model="form.last_name" clear-input type="text" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Email</ion-label>
-            <ion-input v-model="form.email" clear-input type="email"></ion-input>
+            <ion-input v-model="form.email" clear-input type="email" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Mobile</ion-label>
-            <ion-input v-model="form.mobile" clear-input type="number"></ion-input>
+            <ion-input v-model="form.mobile" clear-input type="number" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Date Of Birth</ion-label>
-            <ion-input v-model="form.DOB" clear-input type="date"></ion-input>
+            <ion-input v-model="form.DOB" clear-input type="date" required></ion-input>
           </ion-col>
           <ion-col size="6">
-            <ion-select v-model="form.account_type" placeholder="Select role">
+            <ion-select v-model="form.account_type" placeholder="Select role" required>
               <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
               <ion-select-option value="staff">Staff</ion-select-option>
             </ion-select>
@@ -135,12 +135,14 @@ export default {
   methods: {
     dismiss() {
       this.$refs.modal.$el.dismiss();
+      this.$emit('closeModel')
     },
     async saveData() {
       try {
         this.is_btn_loading = true
         let respond = await staff_api.saveStaff(this.form)
         await this.successToast('Staff Added Successfully')
+        this.dismiss()
       } catch (e) {
         await this.dangerToast(e.message)
       }

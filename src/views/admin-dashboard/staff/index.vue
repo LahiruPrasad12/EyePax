@@ -39,7 +39,7 @@
         </ion-fab-button>
       </ion-fab>
     </ion-content>
-  <AddStaff/>
+    <AddStaff @closeModel="closeModel()"/>
   </ion-page>
 </template>
 
@@ -73,7 +73,7 @@ import {
   IonRow,
   IonTitle,
   IonToolbar,
-    IonButton
+  IonButton
 } from '@ionic/vue';
 
 import {add} from 'ionicons/icons';
@@ -104,7 +104,7 @@ export default defineComponent({
     IonCol,
     IonNavLink,
     IonLoading,
-    IonFab, IonFabButton, IonIcon, IonFabList,IonButton
+    IonFab, IonFabButton, IonIcon, IonFabList, IonButton
   },
   name: "index",
   data() {
@@ -141,6 +141,10 @@ export default defineComponent({
 
       }
       this.is_loading = false
+    },
+
+    closeModel() {
+      this.getAllStaff(this.selected_role)
     }
   },
 
