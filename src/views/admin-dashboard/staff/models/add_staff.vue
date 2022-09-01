@@ -140,11 +140,11 @@ export default {
     async saveData() {
       try {
         this.is_btn_loading = true
-        let respond = await staff_api.saveStaff(this.form)
+        await staff_api.saveStaff(this.form)
         await this.successToast('Staff Added Successfully')
         this.dismiss()
       } catch (e) {
-        await this.dangerToast(e.message)
+        await this.dangerToast(e)
       }
       this.is_btn_loading = false
     },
