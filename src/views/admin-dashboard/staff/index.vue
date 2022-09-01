@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import AddStaff from './models/add_student'
+import AddStaff from './models/add_staff'
 import {defineComponent} from 'vue';
 import staff_apis from "@/apis/modules/admin_apis/staff_apis";
 import {
