@@ -1,25 +1,29 @@
 <template>
-  <ion-fab vertical="bottom" horizontal="end">
-    <ion-fab-button>Share</ion-fab-button>
-
-    <ion-fab-list side="top">
-      <ion-fab-button>Facebook</ion-fab-button>
-      <ion-fab-button>Twitter</ion-fab-button>
-      <ion-fab-button>Youtube</ion-fab-button>
-    </ion-fab-list>
-
-    <ion-fab-list side="start">
-      <ion-fab-button>Vimeo</ion-fab-button>
-    </ion-fab-list>
-
-  </ion-fab>
+  <ion-content>
+    <ion-button @click="setOpen(true)">Show Loading</ion-button>
+    <ion-loading
+        :is-open="isOpenRef"
+        cssClass="my-custom-class"
+        message="Please wait..."
+        @didDismiss="setOpen(false)"
+    >
+    </ion-loading>
+  </ion-content>
 </template>
 
 <script>
-import { IonFab, IonFabButton, IonFabList } from '@ionic/vue';
-import { defineComponent } from 'vue';
-
+import { IonButton, IonContent, IonLoading } from '@ionic/vue';
+import { defineComponent, ref } from 'vue';
 export default defineComponent({
-  components: { IonFab, IonFabButton, IonFabList }
+  props: {
+    timeout: { type: Number, default: 1000 },
+  },
+  components: { IonButton, IonContent, IonLoading },
+  setup() {
+    const isOpenRef = ref(false);
+    const setOpen = (state) => isOpenRef.value = state;
+
+    return { isOpenRef, setOpen }
+  }
 });
 </script>

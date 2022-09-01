@@ -7,6 +7,11 @@
     </ion-header>
 
     <ion-content fullscreen>
+      <ion-loading
+          :is-open="is_loading"
+          cssClass="my-custom-class"
+          message="Please wait..."
+      />
       <ion-list>
         <ion-list-header> All Staff Members</ion-list-header>
 
@@ -62,7 +67,8 @@ import {
   IonRow,
   IonTitle,
   IonToolbar,
-    IonNavLink
+    IonNavLink,
+    IonLoading
 } from '@ionic/vue';
 
 export default defineComponent({
@@ -86,11 +92,13 @@ export default defineComponent({
     IonAvatar,
     IonRow,
     IonCol,
-    IonNavLink
+    IonNavLink,
+    IonLoading
   },
   name: "index",
   data() {
     return {
+      is_loading:false,
       selected_role: undefined,
       all_staff: [],
       pagination: {
@@ -105,12 +113,15 @@ export default defineComponent({
   methods: {
     async getAllStaff(selected_role) {
       try {
+        // this.startLoading()
+        this.is_loading = true
         let respond = (await staff_apis.getAllStaff(selected_role)).data.data.users
         console.log(respond)
         this.all_staff = respond
       } catch (e) {
 
       }
+      this.is_loading = false
     }
   },
 
