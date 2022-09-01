@@ -34,7 +34,7 @@
         </ion-item>
       </ion-list>
       <ion-fab slot="fixed" class="mb-3" horizontal="end" vertical="bottom">
-        <ion-fab-button>
+        <ion-fab-button id="open-modal" expand="block">
           <ion-icon :icon="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
@@ -45,11 +45,12 @@
         <ion-title>Footer</ion-title>
       </ion-toolbar>
     </ion-footer>
-
+  <AddStaff/>
   </ion-page>
 </template>
 
 <script>
+import AddStaff from './models/add_student'
 import {defineComponent} from 'vue';
 import staff_apis from "@/apis/modules/admin_apis/staff_apis";
 import {
@@ -87,6 +88,7 @@ import {useRouter} from "vue-router/dist/vue-router";
 
 export default defineComponent({
   components: {
+    AddStaff,
     IonPage,
     IonHeader,
     IonToolbar,
