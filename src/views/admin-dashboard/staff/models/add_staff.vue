@@ -37,7 +37,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-button class="mt-5" expand="block" shape="round" style="margin-top: 5%" @click="saveData">
+        <ion-button :disabled="is_btn_loading" class="mt-5" expand="block" shape="round" style="margin-top: 5%" @click="saveData">
           <ion-spinner :hidden="!is_btn_loading" name="circles"></ion-spinner>
           Save
         </ion-button>
