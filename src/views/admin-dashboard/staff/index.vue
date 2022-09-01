@@ -26,7 +26,7 @@
             </ion-list>
           </ion-col>
         </ion-row>
-        <ion-item @click="openModel" v-for="staff in all_staff">
+        <ion-item @click="openModel(staff)" v-for="staff in all_staff">
           <ion-avatar slot="start">
             <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
           </ion-avatar>
@@ -173,8 +173,8 @@ export default defineComponent({
       this.getAllStaff(this.selected_role)
     },
 
-    openModel(){
-      this.$refs.singleStaff.handleModel()
+    openModel(data){
+      this.$refs.singleStaff.handleModel(data)
     }
   },
 

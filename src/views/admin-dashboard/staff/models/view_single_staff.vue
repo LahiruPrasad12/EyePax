@@ -4,45 +4,43 @@
       <ion-toolbar>
         <ion-title>Modal</ion-title>
         <ion-buttons slot="end">
-          <ion-button color="light" @click="handleModel()">Close</ion-button>
+          <ion-button color="light" @click="closeModel()">Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
       <ion-list>
         <ion-item>
-          <ion-avatar slot="start">
-            <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <h2>Connor Smith</h2>
-            <p>Sales Rep</p>
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-avatar slot="start">
-            <ion-img src="https://i.pravatar.cc/300?u=a"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <h2>Daniel Smith</h2>
-            <p>Product Designer</p>
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-avatar slot="start">
-            <ion-img src="https://i.pravatar.cc/300?u=d"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <h2>Greg Smith</h2>
-            <p>Director of Operations</p>
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-avatar slot="start">
-            <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <h2>Zoey Smith</h2>
-            <p>CEO</p>
-          </ion-label>
+          <ion-row>
+            <ion-col size="12" >
+              <ion-avatar>
+                <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+              </ion-avatar>
+            </ion-col>
+            <ion-col size="12">
+              <ion-text color="dark">
+                <h1>{{single_staff.first_name}} {{single_staff.last_name}}</h1>
+              </ion-text>
+            </ion-col>
+            <ion-col size="12">
+              <ion-text color="dark">
+                <h3>Date Of Birth : {{single_staff.DOB}}</h3>
+              </ion-text>
+            </ion-col>
+            <ion-col size="12">
+              <ion-text color="dark">
+                <h3>Role : {{single_staff.account_type}}</h3>
+              </ion-text>
+            </ion-col>
+            <ion-col size="12">
+              <ion-text color="dark">
+                <h3>Gmail : {{single_staff.email}}</h3>
+              </ion-text>
+            </ion-col>
+            <ion-col size="12">
+              <ion-text color="dark">
+                <h3>Mobile : {{single_staff.mobile}}</h3>
+              </ion-text>
+            </ion-col>
+          </ion-row>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -63,8 +61,11 @@ import {
   IonAvatar,
   IonImg,
   IonLabel,
+  IonRow,
+  IonCol,
+  IonText
 } from '@ionic/vue';
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 
 export default defineComponent({
   components: {
@@ -80,16 +81,25 @@ export default defineComponent({
     IonAvatar,
     IonImg,
     IonLabel,
+    IonRow,
+    IonCol,
+    IonText
   },
-  data(){
-    return{
-      is_model_open:false
+  data() {
+    return {
+      single_staff: {},
+      is_model_open: false
     }
   },
   methods: {
-    handleModel() {
+    handleModel(data) {
+      this.single_staff = data
       this.is_model_open = !this.is_model_open
     },
+
+    closeModel(){
+      this.is_model_open = !this.is_model_open
+    }
   },
 });
 </script>
