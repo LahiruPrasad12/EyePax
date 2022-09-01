@@ -1,10 +1,10 @@
 <template>
-  <ion-modal is-open="">
+  <ion-modal :is-open="is_model_open">
     <ion-content>
       <ion-toolbar>
         <ion-title>Modal</ion-title>
         <ion-buttons slot="end">
-          <ion-button color="light" @click="dismiss()">Close</ion-button>
+          <ion-button color="light" @click="handleModel()">Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
       <ion-list>
@@ -81,9 +81,14 @@ export default defineComponent({
     IonImg,
     IonLabel,
   },
+  data(){
+    return{
+      is_model_open:false
+    }
+  },
   methods: {
-    dismiss() {
-      this.$refs.modal.$el.dismiss();
+    handleModel() {
+      this.is_model_open = !this.is_model_open
     },
   },
 });
@@ -91,5 +96,19 @@ export default defineComponent({
 
 
 <style scoped>
+ion-modal {
+  --height: 50%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
 
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: rgb(14 116 144);
+  --color: white;
+}
 </style>
