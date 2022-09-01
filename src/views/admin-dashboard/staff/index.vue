@@ -51,7 +51,7 @@
       </ion-fab>
     </ion-content>
     <AddStaff @closeModel="closeModel()"/>
-    <SingleStaff @openUpdateStaffModal="openUpdateStaffModal" ref="singleStaff"/>
+    <SingleStaff @openUpdateStaffModal="openUpdateStaffModal" @closeModel="closeModel()" ref="singleStaff"/>
     <UpdateStaff ref="updateStaff"/>
   </ion-page>
 

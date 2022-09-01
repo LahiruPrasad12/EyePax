@@ -41,10 +41,15 @@
               </ion-text>
             </ion-col>
             <ion-col size="6">
-                <ion-button color="secondary" @click="updateStaff">Edit</ion-button>
+              <ion-button color="secondary" expand="block" shape="round" @click="updateStaff">
+                Edit
+              </ion-button>
             </ion-col>
             <ion-col size="6">
-              <ion-button color="danger">Delete</ion-button>
+              <ion-button color="danger" :disabled="is_btn_loading" expand="block" shape="round" style="margin-top: 5%" @click="confirmRequest">
+                <ion-spinner :hidden="!is_btn_loading" name="circles"></ion-spinner>
+                Delete
+              </ion-button>
             </ion-col>
           </ion-row>
         </ion-item>
@@ -54,6 +59,7 @@
 </template>
 
 <script>
+import staff_apis from "@/apis/modules/admin_apis/staff_apis";
 import {
   IonButtons,
   IonButton,
@@ -69,7 +75,8 @@ import {
   IonLabel,
   IonRow,
   IonCol,
-  IonText
+  IonText, alertController,
+    IonSpinner
 } from '@ionic/vue';
 import {defineComponent} from 'vue';
 
@@ -89,10 +96,12 @@ export default defineComponent({
     IonLabel,
     IonRow,
     IonCol,
-    IonText
+    IonText,
+    IonSpinner
   },
   data() {
     return {
+      is_btn_loading:false,
       single_staff: {},
       is_model_open: false
     }
@@ -111,6 +120,43 @@ export default defineComponent({
     updateStaff(){
       this.$emit('openUpdateStaffModal', this.single_staff)
       this.is_model_open = !this.is_model_open
+    },
+
+
+    async confirmRequest() {
+      const alert = await alertController.create({
+        header: 'Are you sure?',
+        cssClass: 'custom-alert',
+        buttons: [
+          {
+            text: 'No',
+            cssClass: 'alert-button-cancel',
+          },
+          {
+            text: 'Yes',
+            cssClass: 'alert-button-confirm',
+            handler : ()=>{
+              this.deleteUser()
+            }
+          },
+        ],
+      });
+
+      await alert.present();
+    },
+
+    async deleteUser(){
+      try{
+        console.log(this.single_staff)
+        this.is_btn_loading = true
+        await staff_apis.deleteStaff(this.single_staff._id)
+        await this.successToast('User Delete Successfully')
+        this.$emit('closeModel')
+        this.closeModel()
+      }catch (e){
+        await this.dangerToast(e)
+      }
+      this.is_btn_loading = false
     }
   },
 });

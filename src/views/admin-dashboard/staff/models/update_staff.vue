@@ -2,7 +2,7 @@
   <ion-modal :is-open="is_model_open" :enter-animation="enterAnimation" :leave-animation="leaveAnimation" >
     <ion-content fullscreen>
       <ion-toolbar>
-        <ion-title>Add Staff</ion-title>
+        <ion-title>Update Staff</ion-title>
         <ion-buttons slot="end">
           <ion-button @click="dismiss()">Close</ion-button>
         </ion-buttons>
