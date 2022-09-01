@@ -39,12 +39,6 @@
         </ion-fab-button>
       </ion-fab>
     </ion-content>
-
-    <ion-footer>
-      <ion-toolbar>
-        <ion-title>Footer</ion-title>
-      </ion-toolbar>
-    </ion-footer>
   <AddStaff/>
   </ion-page>
 </template>

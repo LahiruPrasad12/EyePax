@@ -1,55 +1,53 @@
 <template>
-  <ion-modal ref="modal" trigger="open-modal" :enter-animation="enterAnimation" :leave-animation="leaveAnimation">
-    <ion-content>
+  <ion-modal ref="modal" :enter-animation="enterAnimation" :leave-animation="leaveAnimation" trigger="open-modal">
+    <ion-content fullscreen>
       <ion-toolbar>
-        <ion-title>Modal</ion-title>
+        <ion-title>Add Staff</ion-title>
         <ion-buttons slot="end">
           <ion-button @click="dismiss()">Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
-      <ion-list>
-        <ion-item>
-          <ion-avatar slot="start">
-            <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <h2>Connor Smith</h2>
-            <p>Sales Rep</p>
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-avatar slot="start">
-            <ion-img src="https://i.pravatar.cc/300?u=a"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <h2>Daniel Smith</h2>
-            <p>Product Designer</p>
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-avatar slot="start">
-            <ion-img src="https://i.pravatar.cc/300?u=d"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <h2>Greg Smith</h2>
-            <p>Director of Operations</p>
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-avatar slot="start">
-            <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <h2>Zoey Smith</h2>
-            <p>CEO</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input v-model="form.first_name" autofocus clear-input spellcheck type="text"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input v-model="form.last_name" clear-input type="text"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input v-model="form.email" clear-input type="email"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label position="floating">Mobile</ion-label>
+            <ion-input v-model="form.mobile" clear-input type="number"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label position="floating">Date Of Birth</ion-label>
+            <ion-input v-model="form.DOB" clear-input type="date"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-select v-model="form.account_type" placeholder="Select role">
+              <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
+              <ion-select-option value="staff">Staff</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-button class="mt-5" expand="block" shape="round" style="margin-top: 5%" @click="saveData">
+          <ion-spinner :hidden="!is_btn_loading" name="circles"></ion-spinner>
+          Save
+        </ion-button>
+      </ion-grid>
     </ion-content>
   </ion-modal>
 </template>
 
 <script>
+import staff_api from "@/apis/modules/admin_apis/staff_apis";
 import {
   IonModal,
   IonContent,
@@ -62,11 +60,37 @@ import {
   IonAvatar,
   IonImg,
   IonButtons,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonInput,
+  IonSelect,
+  IonSelectOption,
+  IonSpinner,
   createAnimation
 } from "@ionic/vue";
 
 export default {
-  components:{IonModal,IonContent,IonToolbar,IonButton,IonTitle,IonItem,IonList,IonLabel,IonAvatar,IonImg,IonButtons},
+  components: {
+    IonModal,
+    IonContent,
+    IonToolbar,
+    IonButton,
+    IonTitle,
+    IonItem,
+    IonList,
+    IonLabel,
+    IonAvatar,
+    IonImg,
+    IonButtons,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonInput,
+    IonSelect,
+    IonSelectOption,
+    IonSpinner
+  },
   name: "add_student",
   setup() {
     const enterAnimation = (baseEl) => {
@@ -79,8 +103,8 @@ export default {
       const wrapperAnimation = createAnimation()
           .addElement(root.querySelector('.modal-wrapper'))
           .keyframes([
-            { offset: 0, opacity: '0', transform: 'scale(0)' },
-            { offset: 1, opacity: '0.99', transform: 'scale(1)' },
+            {offset: 0, opacity: '0', transform: 'scale(0)'},
+            {offset: 1, opacity: '0.99', transform: 'scale(1)'},
           ]);
 
       return createAnimation()
@@ -93,11 +117,34 @@ export default {
     const leaveAnimation = (baseEl) => {
       return enterAnimation(baseEl).direction('reverse');
     };
-    return { enterAnimation, leaveAnimation };
+    return {enterAnimation, leaveAnimation};
+  },
+  data() {
+    return {
+      is_btn_loading: false,
+      form: {
+        first_name: '',
+        last_name: '',
+        email: '',
+        DOB: '',
+        mobile: '',
+        account_type: ''
+      }
+    }
   },
   methods: {
     dismiss() {
       this.$refs.modal.$el.dismiss();
+    },
+    async saveData() {
+      try {
+        this.is_btn_loading = true
+        let respond = await staff_api.saveStaff(this.form)
+        await this.successToast('Staff Added Successfully')
+      } catch (e) {
+        await this.dangerToast(e.message)
+      }
+      this.is_btn_loading = false
     },
   },
 }
