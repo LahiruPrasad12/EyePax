@@ -40,6 +40,12 @@
                 <h3>Mobile : {{single_staff.mobile}}</h3>
               </ion-text>
             </ion-col>
+            <ion-col size="6">
+                <ion-button color="secondary" @click="updateStaff">Edit</ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button color="danger">Delete</ion-button>
+            </ion-col>
           </ion-row>
         </ion-item>
       </ion-list>
@@ -98,6 +104,12 @@ export default defineComponent({
     },
 
     closeModel(){
+      this.is_model_open = !this.is_model_open
+
+    },
+
+    updateStaff(){
+      this.$emit('openUpdateStaffModal', this.single_staff)
       this.is_model_open = !this.is_model_open
     }
   },

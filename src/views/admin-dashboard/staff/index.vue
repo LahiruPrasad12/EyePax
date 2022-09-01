@@ -26,7 +26,7 @@
             </ion-list>
           </ion-col>
         </ion-row>
-        <ion-item @click="openModel(staff)" v-for="staff in all_staff">
+        <ion-item @click="openSingleStaffModal(staff)" v-for="staff in all_staff">
           <ion-avatar slot="start">
             <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
           </ion-avatar>
@@ -36,7 +36,7 @@
                 <h2>{{ staff.first_name }} {{ staff.last_name }}</h2>
               </ion-col>
               <ion-col class="col-fist" size="2">
-                <h2><a><ion-icon id="open-single-modal" expand="block" :icon="pencil"></ion-icon></a></h2>
+                <h2><a ><ion-icon :icon="pencil"></ion-icon></a></h2>
               </ion-col>
             </ion-row>
             <h3>{{ staff.email }}</h3>
@@ -51,7 +51,8 @@
       </ion-fab>
     </ion-content>
     <AddStaff @closeModel="closeModel()"/>
-    <SingleStaff ref="singleStaff"/>
+    <SingleStaff @openUpdateStaffModal="openUpdateStaffModal" ref="singleStaff"/>
+    <UpdateStaff ref="updateStaff"/>
   </ion-page>
 
 </template>
@@ -59,6 +60,7 @@
 <script>
 import AddStaff from './models/add_staff'
 import SingleStaff from './models/view_single_staff'
+import UpdateStaff from './models/update_staff'
 import {defineComponent} from 'vue';
 import {pencil} from 'ionicons/icons';
 import staff_apis from "@/apis/modules/admin_apis/staff_apis";
@@ -124,7 +126,8 @@ export default defineComponent({
     IonFab, IonFabButton, IonIcon, IonFabList, IonButton,
     IonSelect,
     IonSelectOption,
-    SingleStaff
+    SingleStaff,
+    UpdateStaff
   },
   name: "index",
   data() {
@@ -173,8 +176,12 @@ export default defineComponent({
       this.getAllStaff(this.selected_role)
     },
 
-    openModel(data){
+    openSingleStaffModal(data){
       this.$refs.singleStaff.handleModel(data)
+    },
+    openUpdateStaffModal(data){
+      console.log(data)
+      this.$refs.updateStaff.openModal(data)
     }
   },
 
