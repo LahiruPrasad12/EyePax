@@ -1,9 +1,5 @@
 <template>
   <ion-modal ref="modal" :enter-animation="enterAnimation" :leave-animation="leaveAnimation" trigger="open-modal">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Add New Staff</ion-card-title>
-      </ion-card-header>
       <ion-card-content>
           <ion-toolbar>
             <ion-title>Add Staff</ion-title>
@@ -48,7 +44,6 @@
             </ion-button>
           </ion-grid>
       </ion-card-content>
-    </ion-card>
   </ion-modal>
 </template>
 
