@@ -33,7 +33,7 @@
                     </ion-col>
                     <ion-col class="col-fist" size="3">
 <!--                      <h2><a ><ion-icon :icon="pencil"></ion-icon></a></h2>-->
-                      <a>View More>></a>
+                      <a @click="viewSingleItem(item)">View More>></a>
                     </ion-col>
                   </ion-row>
                   <h3>Quantity - {{item.qty}}</h3>
@@ -44,6 +44,7 @@
           </ion-col>
         </ion-row>
       </ion-list>
+      <single_shipment ref="single_shipment" @closeModel="closeModel()"/>
     </ion-content>
   </ion-page>
 </template>
@@ -79,6 +80,7 @@ import { IonPage, IonAvatar,
   IonSelectOption, } from '@ionic/vue';
 import {useRouter} from "vue-router";
 import trackingAPI from "@/apis/modules/admin_apis/tracking";
+import single_shipment from "./models/single_shipping";
 export default {
   components: {
     IonPage,
@@ -105,6 +107,7 @@ export default {
     IonFab, IonFabButton, IonIcon, IonFabList, IonButton,
     IonSelect,
     IonSelectOption,
+    single_shipment
   },
   name: "index",
 
@@ -137,7 +140,13 @@ export default {
 
       }
       this.is_loading = false
-    }
+    },
+    viewSingleItem(data){
+      this.$refs.single_shipment.handleModel(data)
+    },
+    closeModel() {
+      this.getAllShippingItems(this.selected_status)
+    },
   },
 
  async mounted() {

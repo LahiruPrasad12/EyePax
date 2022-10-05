@@ -1,6 +1,6 @@
 <template>
   <ion-modal ref="modal" :enter-animation="enterAnimation" :leave-animation="leaveAnimation" trigger="open-modal">
-      <ion-card-content>
+    <ion-content fullscreen>
           <ion-toolbar>
             <ion-title>Add Staff</ion-title>
             <ion-buttons slot="end">
@@ -43,7 +43,7 @@
               Save
             </ion-button>
           </ion-grid>
-      </ion-card-content>
+    </ion-content>
   </ion-modal>
 </template>
 
