@@ -25,12 +25,12 @@
         </ion-tab-button>
 
         <ion-tab-button
-            href="/tabs/time_sheet"
-            tab="time_sheet"
-            v-on:click="afterTabChange('time_sheet')">
+            href="/admin_home/tracking"
+            tab="tracking"
+            v-on:click="afterTabChange('tracking')">
           <ion-icon :icon="timeOutline"/>
-          <ion-label v-show="tabName==='time_sheet'" style="color: #000000;">Time Sheet</ion-label>
-          <ion-label v-show="tabName !=='time_sheet'" style="color: #ffffff;">Time Sheet</ion-label>
+          <ion-label v-show="tabName==='tracking'" style="color: #000000;">Tracking</ion-label>
+          <ion-label v-show="tabName !=='tracking'" style="color: #ffffff;">Tracking</ion-label>
 
         </ion-tab-button>
         <ion-tab-button

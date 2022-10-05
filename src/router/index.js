@@ -21,6 +21,10 @@ const routes = [
                 component: () => import('@/views/admin-dashboard/dashboard/index')
             },
             {
+                path: 'tracking',
+                component: () => import('@/views/admin-dashboard/tracking/index')
+            },
+            {
                 path: 'staff',
                 component: () => import('@/views/admin-dashboard/staff/index')
             },
