@@ -1,18 +1,77 @@
 <template>
-  <ion-modal :is-open="is_model_open" ref="modal" :enter-animation="enterAnimation" :leave-animation="leaveAnimation" trigger="open-modal">
+  <ion-modal ref="modal" :enter-animation="enterAnimation" :is-open="is_model_open" :leave-animation="leaveAnimation"
+             trigger="open-modal">
     <ion-content fullscreen>
+      <ion-loading
+          :is-open="is_loading"
+          cssClass="my-custom-class"
+          message="Please wait..."
+      />
       <ion-toolbar>
-        <ion-title>Add Staff</ion-title>
+        <ion-title>Shipping Details</ion-title>
+
         <ion-buttons slot="end">
           <ion-button @click="closeModel">Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{Item.name}}</ion-card-title>
+          <ion-card-subtitle>{{Item.item_code}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="3">
+              <ion-label>Item Code</ion-label>
+              <h6>{{Item.item_code}}</h6>
+            </ion-col>
+            <ion-col size="3">
+              <ion-label>Brand</ion-label>
+              <h6>{{Item.brand}}</h6>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label>Name</ion-label>
+              <h6>{{Item.name}}</h6>
+            </ion-col>
+            <ion-col size="3">
+              <ion-label>Quantity</ion-label>
+              <h6>{{Item.qty}}</h6>
+            </ion-col>
+            <ion-col size="3">
+              <ion-label>Price</ion-label>
+              <h6>{{Item.price}}</h6>
+            </ion-col>
+            <ion-col size="6">
+              <ion-label>Shipping Date</ion-label>
+              <h6>{{new Date(Item.created_at).toDateString()}}</h6>
+            </ion-col>
+          </ion-row>
+          {{Item.description}}
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-item>
+          <ion-label>Update Shipping Item</ion-label>
+        </ion-item>
+
+        <ion-card-content style="margin-top: 20px">
+          <ion-select placeholder="Select status" v-model="selected_status">
+            <ion-select-option value="">None</ion-select-option>
+            <ion-select-option value="draft">Draft</ion-select-option>
+            <ion-select-option value="pending">Pending</ion-select-option>
+            <ion-select-option value="shipped">Shipped</ion-select-option>
+          </ion-select>
+        </ion-card-content>
+      </ion-card>
     </ion-content>
 
   </ion-modal>
 </template>
 
 <script>
+import trackingAPI from "@/apis/modules/admin_apis/tracking";
 import {
   IonModal,
   IonContent,
@@ -37,8 +96,12 @@ import {
   IonCardHeader,
   IonCardContent,
   IonCardTitle,
+  IonCardSubtitle,
+  IonIcon,
+    IonLoading,
   createAnimation
 } from "@ionic/vue";
+
 export default {
   components: {
     IonModal,
@@ -63,7 +126,10 @@ export default {
     IonCard,
     IonCardHeader,
     IonCardContent,
-    IonCardTitle
+    IonCardTitle,
+    IonCardSubtitle,
+    IonIcon,
+    IonLoading
   },
   name: "single_shipping",
   setup() {
@@ -95,14 +161,56 @@ export default {
   },
   data() {
     return {
-      is_model_open: false
+      is_model_open: false,
+      Item: {},
+      is_loading:false,
+      selected_status:'',
+      data :{},
     }
   },
-  methods:{
+  watch:{
+    'selected_status'(val){
+      if(val){
+        this.is_loading = true
+        this.updateState()
+      }
+    }
+  },
+  methods: {
     handleModel(data) {
-      // this.single_staff = data
-      console.log(data)
+      if (data) {
+        this.getSingleItem(data)
+      }
       this.is_model_open = !this.is_model_open
+
+    },
+
+    async getSingleItem(data) {
+      try {
+        this.is_loading = true
+        this.data = data
+        this.Item = (await trackingAPI.getItem(data.item)).data.data.Item
+        this.selected_status = data.status
+      } catch (e) {
+
+      }
+      this.is_loading = false
+    },
+
+    async updateState(){
+      try{
+        if(this.selected_status !== this.data.status){
+          this.is_loading = true
+          let payload = {
+            status: this.selected_status
+          }
+          await trackingAPI.UpdateShippingItems(this.data._id,payload)
+          this.closeModel()
+        }
+      }catch (e) {
+
+      }
+      this.is_loading = false
     },
 
     closeModel() {
