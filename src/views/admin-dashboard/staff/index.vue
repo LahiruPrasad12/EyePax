@@ -18,7 +18,7 @@
           <ion-col size="12">
             <ion-list>
               <ion-item>
-                <ion-select placeholder="Select role" v-model="selected_role">
+                <ion-select v-model="selected_role" placeholder="Select role">
                   <ion-select-option value="">None</ion-select-option>
                   <ion-select-option value="staff">Staff</ion-select-option>
                   <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
@@ -27,23 +27,19 @@
             </ion-list>
           </ion-col>
         </ion-row>
-        <ion-item @click="openSingleStaffModal(staff)" v-for="staff in all_staff">
-          <ion-avatar slot="start">
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-          </ion-avatar>
-          <ion-label>
-            <ion-row>
-              <ion-col class="col-fist" size="10">
-                <h2>{{ staff.first_name }} {{ staff.last_name }}</h2>
-              </ion-col>
-              <ion-col class="col-fist" size="2">
-                <h2><a ><ion-icon :icon="pencil"></ion-icon></a></h2>
-              </ion-col>
-            </ion-row>
-            <h3>{{ staff.email }}</h3>
-            <p>{{ staff.account_type }}</p>
-          </ion-label>
-        </ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col v-for="staff in all_staff" size="6" @click="openSingleStaffModal(staff)">
+              <div class="video anim" style="--delay: .5s">
+                <img src="https://i.postimg.cc/cHX7WdN6/sup2.jpg" v-if="staff.account_type==='admin'" type="">
+                <img src="https://i.postimg.cc/tRcPNSR0/item2.jpg" v-if="staff.account_type==='supplier'"/>
+                <img src="https://i.postimg.cc/0Nv7Jzkb/staff2.jpg" v-if="staff.account_type === 'staff'"/>
+                <div style="margin-top: auto; color: white; size: 10px; text-align: center">{{ staff.first_name }}</div>
+                <h6 style="margin-top: auto; color: white; size: 10px; text-align: center; margin-left: 5px; margin-right: 5px">{{ staff.email }}</h6>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-list>
       <ion-fab slot="fixed" class="mb-3" horizontal="end" vertical="bottom">
         <ion-fab-button id="open-modal" expand="block">
@@ -51,7 +47,7 @@
         </ion-fab-button>
       </ion-fab>
       <AddStaff @closeModel="closeModel()"/>
-      <SingleStaff @openUpdateStaffModal="openUpdateStaffModal" @closeModel="closeModel()" ref="singleStaff"/>
+      <SingleStaff ref="singleStaff" @closeModel="closeModel()" @openUpdateStaffModal="openUpdateStaffModal"/>
       <UpdateStaff ref="updateStaff"/>
     </ion-content>
 
@@ -66,6 +62,7 @@ import UpdateStaff from './models/update_staff'
 import {defineComponent} from 'vue';
 import {pencil} from 'ionicons/icons';
 import staff_apis from "@/apis/modules/admin_apis/staff_apis";
+import '@/assets/test.css'
 import {
   IonAvatar,
   IonBackButton,
@@ -95,6 +92,7 @@ import {
   IonButton,
   IonSelect,
   IonSelectOption,
+  IonGrid,
 } from '@ionic/vue';
 
 import {add} from 'ionicons/icons';
@@ -129,7 +127,8 @@ export default defineComponent({
     IonSelect,
     IonSelectOption,
     SingleStaff,
-    UpdateStaff
+    UpdateStaff,
+    IonGrid
   },
   name: "index",
   data() {
@@ -155,8 +154,8 @@ export default defineComponent({
     }
   },
 
-  watch:{
-    selected_role(){
+  watch: {
+    selected_role() {
       this.getAllStaff(this.selected_role)
     }
   },
@@ -178,10 +177,10 @@ export default defineComponent({
       this.getAllStaff(this.selected_role)
     },
 
-    openSingleStaffModal(data){
+    openSingleStaffModal(data) {
       this.$refs.singleStaff.handleModel(data)
     },
-    openUpdateStaffModal(data){
+    openUpdateStaffModal(data) {
       console.log(data)
       this.$refs.updateStaff.openModal(data)
     }
