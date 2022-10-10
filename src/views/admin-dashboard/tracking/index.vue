@@ -33,7 +33,7 @@
                     </ion-col>
                     <ion-col class="col-fist" size="3">
 <!--                      <h2><a ><ion-icon :icon="pencil"></ion-icon></a></h2>-->
-                      <a @click="viewSingleItem(item)">View More>></a>
+                      <a @click="viewSingleItem(item)">View More</a>
                     </ion-col>
                   </ion-row>
                   <h3>Quantity - {{item.qty}}</h3>
