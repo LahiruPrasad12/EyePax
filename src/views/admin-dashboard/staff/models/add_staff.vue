@@ -1,5 +1,5 @@
 <template>
-  <ion-modal ref="modal" :enter-animation="enterAnimation" :leave-animation="leaveAnimation" trigger="open-modal">
+  <ion-modal :enter-animation="enterAnimation" :is-open="is_open" :leave-animation="leaveAnimation" >
     <ion-content fullscreen>
           <ion-toolbar>
             <ion-title>Add Staff</ion-title>
@@ -133,6 +133,7 @@ export default {
   data() {
     return {
       is_btn_loading: false,
+      is_open:false,
       form: {
         first_name: '',
         last_name: '',
@@ -145,8 +146,11 @@ export default {
   },
   methods: {
     dismiss() {
-      this.$refs.modal.$el.dismiss();
+      this.is_open = !this.is_open
       this.$emit('closeModel')
+    },
+    openAddStaffModel() {
+      this.is_open = true
     },
     async saveData() {
       try {

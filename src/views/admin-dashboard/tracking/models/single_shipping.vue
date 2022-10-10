@@ -181,7 +181,7 @@ export default {
       if (data) {
         this.getSingleItem(data)
       }
-      this.is_model_open = !this.is_model_open
+      this.is_model_open = true
 
     },
 
@@ -214,8 +214,9 @@ export default {
     },
 
     closeModel() {
-      this.$emit('closeModel')
       this.is_model_open = !this.is_model_open
+      this.$emit('closeSingleShippingModel')
+
     }
   }
 }

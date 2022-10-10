@@ -30,23 +30,23 @@
         <ion-grid>
           <ion-row>
             <ion-col v-for="staff in all_staff" size="6" @click="openSingleStaffModal(staff)">
-              <div class="video anim" style="--delay: .5s">
+              <ion-card class="video anim" style="--delay: .5s; border-color: #0d0d0d">
                 <img src="https://i.postimg.cc/cHX7WdN6/sup2.jpg" v-if="staff.account_type==='admin'" type="">
                 <img src="https://i.postimg.cc/tRcPNSR0/item2.jpg" v-if="staff.account_type==='supplier'"/>
                 <img src="https://i.postimg.cc/0Nv7Jzkb/staff2.jpg" v-if="staff.account_type === 'staff'"/>
                 <div style="margin-top: auto; color: white; size: 10px; text-align: center">{{ staff.first_name }}</div>
-                <h6 style="margin-top: auto; color: white; size: 10px; text-align: center; margin-left: 5px; margin-right: 5px">{{ staff.email }}</h6>
-              </div>
+                <h6 style="margin-top: auto; color: white; size: 5px; text-align: center; margin-left: 5px; margin-right: 5px">{{ staff.email }}</h6>
+              </ion-card>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-list>
       <ion-fab slot="fixed" class="mb-3" horizontal="end" vertical="bottom">
-        <ion-fab-button id="open-modal" expand="block">
+        <ion-fab-button id="open-modal" expand="block" @click="addStaff">
           <ion-icon :icon="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-      <AddStaff @closeModel="closeModel()"/>
+      <AddStaff ref="addStaff" @closeModel="closeModel()"/>
       <SingleStaff ref="singleStaff" @closeModel="closeModel()" @openUpdateStaffModal="openUpdateStaffModal"/>
       <UpdateStaff ref="updateStaff"/>
     </ion-content>
@@ -93,6 +93,7 @@ import {
   IonSelect,
   IonSelectOption,
   IonGrid,
+    IonCard,
 } from '@ionic/vue';
 
 import {add} from 'ionicons/icons';
@@ -128,7 +129,8 @@ export default defineComponent({
     IonSelectOption,
     SingleStaff,
     UpdateStaff,
-    IonGrid
+    IonGrid,
+    IonCard,
   },
   name: "index",
   data() {
@@ -181,9 +183,11 @@ export default defineComponent({
       this.$refs.singleStaff.handleModel(data)
     },
     openUpdateStaffModal(data) {
-      console.log(data)
       this.$refs.updateStaff.openModal(data)
-    }
+    },
+    addStaff() {
+      this.$refs.addStaff.openAddStaffModel()
+    },
   },
 
   mounted() {
