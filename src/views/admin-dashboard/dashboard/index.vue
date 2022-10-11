@@ -1,8 +1,8 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true" collapse="fade">
-      <ion-toolbar>
-        <ion-title>Dash Board</ion-title>
+    <ion-header translucent >
+      <ion-toolbar class="toolbar" style="padding-top: 10px; ">
+        <ion-title>DASHBOARD</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="main-container">

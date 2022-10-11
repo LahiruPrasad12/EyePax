@@ -6,8 +6,8 @@
           cssClass="my-custom-class"
           message="Please wait..."
       />
-      <ion-toolbar>
-        <ion-title>Shipping Details</ion-title>
+      <ion-toolbar class="toolbar" style="padding-top: 10px; ">
+        <ion-title>{{Item.name}}'s Details</ion-title>
 
         <ion-buttons slot="end">
           <ion-button @click="closeModel">Close</ion-button>
@@ -98,6 +98,7 @@ import {
   IonCardSubtitle,
   IonIcon,
     IonLoading,
+    IonBackButton,
   createAnimation
 } from "@ionic/vue";
 
@@ -128,7 +129,8 @@ export default {
     IonCardTitle,
     IonCardSubtitle,
     IonIcon,
-    IonLoading
+    IonLoading,
+    IonBackButton
   },
   name: "single_shipping",
   setup() {

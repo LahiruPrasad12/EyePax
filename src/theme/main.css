@@ -169,6 +169,11 @@
     height: 10px;
 }
 
+.u-input{
+    border-radius: 5px;
+    background: #d3dbd5;
+}
+
 /*}*/
 /*.segment-button-checked {*/
 /*    color: #13bb84;*/

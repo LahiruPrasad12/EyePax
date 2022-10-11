@@ -1,49 +1,54 @@
 <template>
-  <ion-modal :enter-animation="enterAnimation" :is-open="is_open" :leave-animation="leaveAnimation" >
+  <ion-modal :enter-animation="enterAnimation" :is-open="is_open" :leave-animation="leaveAnimation">
     <ion-content fullscreen>
-          <ion-toolbar>
-            <ion-title>Add Staff</ion-title>
-            <ion-buttons slot="end">
-              <ion-button @click="dismiss()">Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-          <ion-grid>
-            <ion-row>
-              <ion-col size="6">
-                <ion-label position="floating">First Name</ion-label>
-                <ion-text color="dark" v-model="form.first_name" autofocus clear-input required spellcheck type="text"></ion-text>
-              </ion-col>
-              <ion-col size="6">
-                <ion-label position="floating">Last Name</ion-label>
-                <ion-input v-model="form.last_name" clear-input required type="text"></ion-input>
-              </ion-col>
-              <ion-col size="6">
-                <ion-label position="floating">Email</ion-label>
-                <ion-input v-model="form.email" clear-input required type="email"></ion-input>
-              </ion-col>
-              <ion-col size="6">
-                <ion-label position="floating">Mobile</ion-label>
-                <ion-input v-model="form.mobile" clear-input required type="number"></ion-input>
-              </ion-col>
-              <ion-col size="6">
-                <ion-label position="floating">Date Of Birth</ion-label>
-                <ion-input v-model="form.DOB" clear-input required type="date"></ion-input>
-              </ion-col>
-              <ion-col size="6">
-                <ion-select v-model="form.account_type" placeholder="Select role" required>
-                  <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
-                  <ion-select-option value="staff">Staff</ion-select-option>
-                  <ion-select-option value="supplier">Supplier</ion-select-option>
-                </ion-select>
-              </ion-col>
-            </ion-row>
+      <ion-toolbar class="toolbar" style="padding-top: 10px">
+        <ion-title style="margin-left: 20%">ADD STAFF</ion-title>
+        <ion-buttons slot="end">
+          <ion-button @click="dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input v-model="form.first_name" class="u-input"
+                       type="text"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input class="u-input" v-model="form.last_name" clear-input required type="text"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input class="u-input" v-model="form.email" clear-input required type="email"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label position="floating">Mobile</ion-label>
+            <ion-input class="u-input" v-model="form.mobile" clear-input required type="number"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label position="floating">Date Of Birth</ion-label>
+            <ion-input class="u-input" v-model="form.DOB" clear-input required type="date">
+<!--              <ion-col class="ion-align-self-center" size="1">-->
+<!--                <ion-icon :icon="calendarOutline"/>-->
+<!--              </ion-col>-->
+            </ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-select style="margin-top: 12%" class="u-input" v-model="form.account_type" placeholder="Select role" required>
+              <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
+              <ion-select-option value="staff">Staff</ion-select-option>
+              <ion-select-option value="supplier">Supplier</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
 
-            <ion-button :disabled="is_btn_loading" class="mt-5" expand="block" shape="round" style="margin-top: 5%"
-                        @click="saveData">
-              <ion-spinner :hidden="!is_btn_loading" name="circles"></ion-spinner>
-              Save
-            </ion-button>
-          </ion-grid>
+        <ion-button :disabled="is_btn_loading" class="mt-5" expand="block" shape="round" style="margin-top: 5%"
+                    @click="saveData">
+          <ion-spinner :hidden="!is_btn_loading" name="circles"></ion-spinner>
+          Save
+        </ion-button>
+      </ion-grid>
     </ion-content>
   </ion-modal>
 </template>
@@ -51,8 +56,20 @@
 <script>
 import staff_api from "@/apis/modules/admin_apis/staff_apis";
 import {
+  addCircleOutline,
+  arrowDownCircleOutline,
+  arrowForwardCircleOutline,
+  arrowForwardOutline,
+  cafeOutline,
+  calendarOutline,
+  removeCircleOutline,
+  timeOutline,
+  minusOutline,
+} from 'ionicons/icons';
+import {
   IonModal,
-    IonText,
+  IonText,
+  IonIcon,
   IonContent,
   IonToolbar,
   IonButton,
@@ -103,7 +120,8 @@ export default {
     IonCardHeader,
     IonCardContent,
     IonCardTitle,
-    IonText
+    IonText,
+    IonIcon
   },
   name: "add_student",
   setup() {
@@ -131,12 +149,13 @@ export default {
     const leaveAnimation = (baseEl) => {
       return enterAnimation(baseEl).direction('reverse');
     };
-    return {enterAnimation, leaveAnimation};
+    return {enterAnimation, leaveAnimation, calendarOutline};
   },
+
   data() {
     return {
       is_btn_loading: false,
-      is_open:false,
+      is_open: false,
       form: {
         first_name: '',
         last_name: '',

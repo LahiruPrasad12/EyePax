@@ -11,29 +11,30 @@
         <ion-row>
           <ion-col size="6">
             <ion-label position="floating">First Name</ion-label>
-            <ion-input v-model="form.first_name" autofocus clear-input spellcheck type="text" required></ion-input>
+            <ion-input class="u-input" v-model="form.first_name" autofocus clear-input spellcheck type="text" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Last Name</ion-label>
-            <ion-input v-model="form.last_name" clear-input type="text" required></ion-input>
+            <ion-input class="u-input" v-model="form.last_name" clear-input type="text" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Email</ion-label>
-            <ion-input v-model="form.email" clear-input type="email" required></ion-input>
+            <ion-input class="u-input" v-model="form.email" clear-input type="email" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Mobile</ion-label>
-            <ion-input v-model="form.mobile" clear-input type="number" required></ion-input>
+            <ion-input class="u-input" v-model="form.mobile" clear-input type="number" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Date Of Birth</ion-label>
-            <ion-input :value="form.DOB" v-model="form.DOB" clear-input type="date" required></ion-input>
+            <ion-input class="u-input" :value="form.DOB" v-model="form.DOB" clear-input type="date" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Select Role</ion-label>
-            <ion-select v-model="form.account_type" placeholder="Select role" required>
+            <ion-select class="u-input" style="margin-top: 12%" v-model="form.account_type" placeholder="Select role" required>
               <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
               <ion-select-option value="staff">Staff</ion-select-option>
+              <ion-select-option value="supplier">Supplier</ion-select-option>
             </ion-select>
           </ion-col>
         </ion-row>

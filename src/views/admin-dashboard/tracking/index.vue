@@ -1,8 +1,8 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true" collapse="fade">
-      <ion-toolbar>
-        <ion-title>Tracking Page</ion-title>
+    <ion-header translucent >
+      <ion-toolbar class="toolbar" style="padding-top: 10px; ">
+        <ion-title>TRACKING MANAGEMENT</ion-title>
       </ion-toolbar>
     </ion-header>
 
