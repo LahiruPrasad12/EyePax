@@ -11,7 +11,7 @@
             <ion-row>
               <ion-col size="6">
                 <ion-label position="floating">First Name</ion-label>
-                <ion-input v-model="form.first_name" autofocus clear-input required spellcheck type="text"></ion-input>
+                <ion-text color="dark" v-model="form.first_name" autofocus clear-input required spellcheck type="text"></ion-text>
               </ion-col>
               <ion-col size="6">
                 <ion-label position="floating">Last Name</ion-label>
@@ -33,6 +33,7 @@
                 <ion-select v-model="form.account_type" placeholder="Select role" required>
                   <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
                   <ion-select-option value="staff">Staff</ion-select-option>
+                  <ion-select-option value="supplier">Supplier</ion-select-option>
                 </ion-select>
               </ion-col>
             </ion-row>
@@ -51,6 +52,7 @@
 import staff_api from "@/apis/modules/admin_apis/staff_apis";
 import {
   IonModal,
+    IonText,
   IonContent,
   IonToolbar,
   IonButton,
@@ -100,7 +102,8 @@ export default {
     IonCard,
     IonCardHeader,
     IonCardContent,
-    IonCardTitle
+    IonCardTitle,
+    IonText
   },
   name: "add_student",
   setup() {

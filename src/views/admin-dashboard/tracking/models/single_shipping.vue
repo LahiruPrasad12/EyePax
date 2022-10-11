@@ -1,6 +1,5 @@
 <template>
-  <ion-modal ref="modal" :enter-animation="enterAnimation" :is-open="is_model_open" :leave-animation="leaveAnimation"
-             trigger="open-modal">
+  <ion-modal :enter-animation="enterAnimation" :is-open="is_model_open" :leave-animation="leaveAnimation">
     <ion-content fullscreen>
       <ion-loading
           :is-open="is_loading"

@@ -1,50 +1,179 @@
-.searchbar-input-container.sc-ion-searchbar-ios {
-    max-height: 32px !important;
-    margin-top: 0.5em !important;
+/*bg-content{*/
+/*  !*background: #F4F5F8 !important;*!*/
+/*  background: red !important;*/
+/*}*/
+/*.inner-scroll scroll-y{*/
+/*  background: red !important;*/
+/*}*/
+
+.tab-selected {
+    color: #13bb84;
 }
 
-.searchbar-input {
-    border-radius: 25px !important;
-    background: rgba(var(--ion-color-contrast-rgb), 0.15) !important;
-    padding-left: 35px !important;
-    font-size: 0.95rem !important;
+.tabs
+.tab-button
+.tab-button-text {
+    text-transform: none;
 }
 
-.searchbar-search-icon.sc-ion-searchbar-ios {
-    margin-left: 0.35em !important;
-    width: 18px !important;
+.h5_style {
+    font-size: 14px;
+    line-height: 18px;
+    /* identical to box height */
+
+    letter-spacing: -0.3px;
+
+    color: #000000;
 }
 
-.sc-ion-label-ios-s h2 {
-    font-size: 0.85rem !important;
-    line-height: 1.4 !important;
+.apply-modal::part(backdrop) {
+    background-color: #383a3e;
+
 }
 
-.order-badge {
-    --background: #b2a8f5 !important;
-    font-size: 9px !important;
-    line-height: 1.6 !important;
-    letter-spacing: 0.1rem;
+.apply-modal::part(content) {
+    width: 345px;
+    height: 400px;
+    left: 10px;
+    top: 170px;
+    background: #FFFFFF;
+    border-radius: 4px;
+
 }
 
-.or-cart {
-    padding-left: 10px !important;
-    margin-left: 0px !important;
+.success-modal::part(backdrop) {
+    background-color: #383a3e;
+
 }
 
-.or-cart hr {
-    border-bottom: 1px solid #c9c3f3;
+.success-modal::part(content) {
+    width: 345px;
+    height: 400px;
+    left: 10px;
+    top: 170px;
+    background: #FFFFFF;
+    border-radius: 4px;
+
 }
 
-.or-cart ion-text span {
-    color: #d3ceff !important;
-    font-size: 0.85rem !important;
+.cancel-modal::part(backdrop) {
+    background-color: #383a3e;
+
 }
 
-.or-cart ion-text {
-    font-size: 0.95rem !important;
+.cancel-modal::part(content) {
+
+    width: 345px;
+    height: 400px;
+    left: 10px;
+    top: 170px;
+    background: #FFFFFF;
+    border-radius: 4px;
+
 }
-.or-cart ion-text p {
-    margin-bottom: 0.7em !important;
-    letter-spacing: 0.08rem !important;
+
+.accept-modal::part(backdrop) {
+    background-color: #383a3e;
+
 }
+
+.accept-modal::part(content) {
+
+    width: 345px;
+    height: 300px;
+    left: 10px;
+    top: 170px;
+    background: #FFFFFF;
+    border-radius: 4px;
+
+}
+
+.reject-modal::part(backdrop) {
+    background-color: #383a3e;
+
+}
+
+.toolbar {
+    --background: #171822;
+    color: white;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.header_row {
+    padding-top: 30px;
+}
+
+.reject-modal::part(content) {
+    width: 345px;
+    height: 300px;
+    left: 10px;
+    top: 170px;
+    background: #FFFFFF;
+    border-radius: 4px;
+
+}
+
+.cancelBook-modal::part(backdrop) {
+    background-color: #383a3e;
+
+}
+
+.cancelBook-modal::part(content) {
+
+    width: 90%;
+    height: 70%;
+    left: 10px;
+    top: 170px;
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+
+.editTimeSheet-modal::part(backdrop) {
+    background-color: #383a3e;
+
+}
+
+.editTimeSheet-modal::part(content) {
+
+    width: 345px;
+    height: 570px;
+    left: 10px;
+    top: 170px;
+    background: #FFFFFF;
+    border-radius: 4px;
+
+}
+
+.viewComments-modal::part(backdrop) {
+    background-color: #383a3e;
+
+}
+
+.viewComments-modal::part(content) {
+    width: 245px;
+    height: 200px;
+    left: 10px;
+    top: 170px;
+    background: #FFFFFF;
+    border-radius: 4px;
+}
+
+.native-input[type=date]::-webkit-calendar-picker-indicator {
+    width: 10px;
+    height: 10px;
+}
+
+.native-input[type=time]::-webkit-calendar-picker-indicator {
+    width: 10px;
+    height: 10px;
+}
+
+/*}*/
+/*.segment-button-checked {*/
+/*    color: #13bb84;*/
+/*}*/
+
+/*.ion-segment{*/
+/*    color:#13bb84;*/
+/*}*/
