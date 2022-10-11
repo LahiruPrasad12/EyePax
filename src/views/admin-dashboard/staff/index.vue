@@ -13,24 +13,24 @@
           message="Please wait..."
       />
       <ion-list>
-        <ion-list-header> All Staff Members</ion-list-header>
+        <ion-list-header> <ion-text color="medium">
+          <h3>All Staff Members</h3>
+        </ion-text></ion-list-header>
         <ion-row>
           <ion-col size="12">
-            <ion-list>
-              <ion-item>
-                <ion-select v-model="selected_role" placeholder="Select role">
+            <ion-list class="u-input" >
+                <ion-select  v-model="selected_role" placeholder="Select role">
                   <ion-select-option value="">None</ion-select-option>
                   <ion-select-option value="staff">Staff</ion-select-option>
                   <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
                 </ion-select>
-              </ion-item>
             </ion-list>
           </ion-col>
         </ion-row>
-        <ion-grid>
+        <ion-grid style="margin-top: 5%">
           <ion-row>
             <ion-col v-for="staff in all_staff" size="6" @click="openSingleStaffModal(staff)">
-              <ion-card class="video anim" style="--delay: .5s; border-color: #0d0d0d">
+              <ion-card class="video anim" style="--delay: .5s; border-color: #0d0d0d;">
                 <img src="https://i.postimg.cc/cHX7WdN6/sup2.jpg" v-if="staff.account_type==='admin'" type="">
                 <img src="https://i.postimg.cc/tRcPNSR0/item2.jpg" v-if="staff.account_type==='supplier'"/>
                 <img src="https://i.postimg.cc/0Nv7Jzkb/staff2.jpg" v-if="staff.account_type === 'staff'"/>
@@ -94,6 +94,7 @@ import {
   IonSelectOption,
   IonGrid,
     IonCard,
+  IonText
 } from '@ionic/vue';
 
 import {add} from 'ionicons/icons';
@@ -131,6 +132,7 @@ export default defineComponent({
     UpdateStaff,
     IonGrid,
     IonCard,
+    IonText
   },
   name: "index",
   data() {

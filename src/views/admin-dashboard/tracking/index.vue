@@ -13,20 +13,20 @@
           message="Please wait..."
       />
       <ion-list>
-        <ion-list-header> All Shipping Items</ion-list-header>
+        <ion-list-header><ion-text color="medium">
+          <h3>All Shipping Items</h3>
+        </ion-text> </ion-list-header>
         <ion-grid>
           <ion-row>
-            <ion-col size="12">
-              <ion-item class="mb-5">
+            <ion-col size="12" class="u-input">
                 <ion-select v-model="selected_status" placeholder="Select status">
                   <ion-select-option value="">None</ion-select-option>
                   <ion-select-option value="draft">Draft</ion-select-option>
                   <ion-select-option value="pending">Pending</ion-select-option>
                   <ion-select-option value="shipped">Shipped</ion-select-option>
                 </ion-select>
-              </ion-item>
             </ion-col>
-            <ion-col v-for="item in all_items" size="6" @click="viewSingleItem(item)">
+            <ion-col v-for="item in all_items" size="6" @click="viewSingleItem(item)" style="margin-top: 10%">
               <div class="video anim" style="--delay: .5s; text-align: center; margin-left: 5px; margin-right: px">
                 <div class="video-wrapper">
                   <img src="https://i.postimg.cc/Qtk5bhM0/staff-c.jpg" type="" v-if="item.status === 'draft'">
@@ -77,6 +77,7 @@ import {
   IonSelect,
   IonGrid,
   IonSelectOption,
+  IonText
 } from '@ionic/vue';
 import {useRouter} from "vue-router";
 import trackingAPI from "@/apis/modules/admin_apis/tracking";
@@ -110,6 +111,7 @@ export default {
     IonSelectOption,
     single_shipment,
     IonGrid,
+    IonText
   },
   name: "index",
 
