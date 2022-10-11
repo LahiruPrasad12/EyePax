@@ -1,8 +1,8 @@
 <template>
   <ion-modal :is-open="is_model_open" :enter-animation="enterAnimation" :leave-animation="leaveAnimation" >
     <ion-content fullscreen>
-      <ion-toolbar>
-        <ion-title>Update Staff</ion-title>
+      <ion-toolbar class="toolbar" style="padding-top: 10px">
+        <ion-title style="margin-left: 20%">update {{form.first_name}}'s details</ion-title>
         <ion-buttons slot="end">
           <ion-button @click="dismiss()">Close</ion-button>
         </ion-buttons>
@@ -27,11 +27,11 @@
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Date Of Birth</ion-label>
-            <ion-input class="u-input" :value="form.DOB" v-model="form.DOB" clear-input type="date" required></ion-input>
+            <ion-input class="u-input" v-model="form.DOB" clear-input type="date" required></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label position="floating">Select Role</ion-label>
-            <ion-select class="u-input" style="margin-top: 12%" v-model="form.account_type" placeholder="Select role" required>
+            <ion-select class="u-input" v-model="form.account_type" placeholder="Select role" required>
               <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
               <ion-select-option value="staff">Staff</ion-select-option>
               <ion-select-option value="supplier">Supplier</ion-select-option>
@@ -156,6 +156,7 @@ export default {
     openModal(data){
       this.is_model_open = !this.is_model_open
       this.form = data
+      this.form.DOB = new Date(data.DOB).toISOString().split('T')[0]
       console.log(this.form)
     }
   },

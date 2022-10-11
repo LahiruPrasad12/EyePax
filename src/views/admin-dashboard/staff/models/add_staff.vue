@@ -35,7 +35,8 @@
             </ion-input>
           </ion-col>
           <ion-col size="6">
-            <ion-select style="margin-top: 12%" class="u-input" v-model="form.account_type" placeholder="Select role" required>
+            <ion-label position="floating">Select Role</ion-label>
+            <ion-select class="u-input" v-model="form.account_type" placeholder="Select role" required>
               <ion-select-option value="stock-manager">Stock-Manager</ion-select-option>
               <ion-select-option value="staff">Staff</ion-select-option>
               <ion-select-option value="supplier">Supplier</ion-select-option>
