@@ -7,7 +7,7 @@
           message="Please wait..."
       />
       <ion-toolbar class="toolbar" style="padding-top: 10px; ">
-        <ion-title>{{Item.name}}'s Details</ion-title>
+        <ion-title>{{ Item.name }}'s Details</ion-title>
 
         <ion-buttons slot="end">
           <ion-button @click="closeModel">Close</ion-button>
@@ -15,38 +15,57 @@
       </ion-toolbar>
       <ion-card>
         <ion-card-header>
-          <ion-card-title>{{Item.name}}</ion-card-title>
-          <ion-card-subtitle>{{Item.item_code}}</ion-card-subtitle>
+          <ion-card-title>{{ Item.name }}</ion-card-title>
+          <ion-card-subtitle>{{ Item.item_code }}</ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
           <ion-row>
             <ion-col size="3">
-              <ion-label>Item Code</ion-label>
-              <h6>{{Item.item_code}}</h6>
+              <ion-label>
+                  Item Code
+              </ion-label>
+              <ion-text color="medium">
+                <h6>{{ Item.item_code }}</h6>
+              </ion-text>
+
             </ion-col>
             <ion-col size="3">
               <ion-label>Brand</ion-label>
-              <h6>{{Item.brand}}</h6>
+              <ion-text color="medium">
+                <h6>{{ Item.brand }}</h6>
+              </ion-text>
+
             </ion-col>
             <ion-col size="6">
               <ion-label>Name</ion-label>
-              <h6>{{Item.name}}</h6>
+              <ion-text color="medium">
+                <h6>{{ Item.name }}</h6>
+              </ion-text>
             </ion-col>
             <ion-col size="3">
               <ion-label>Quantity</ion-label>
-              <h6>{{Item.qty}}</h6>
+              <ion-text color="medium">
+                <h6>{{ Item.qty }}</h6>
+              </ion-text>
             </ion-col>
             <ion-col size="3">
               <ion-label>Price</ion-label>
-              <h6>{{Item.price}}</h6>
+              <ion-text color="medium">
+                <h6>{{ Item.price }}</h6>
+              </ion-text>
             </ion-col>
             <ion-col size="6">
               <ion-label>Shipping Date</ion-label>
-              <h6>{{new Date(Item.created_at).toDateString()}}</h6>
+              <ion-text color="medium">
+                <h6>{{ new Date(Item.created_at).toDateString() }}</h6>
+              </ion-text>
             </ion-col>
           </ion-row>
-          {{Item.description}}
+          <ion-text color="medium">
+            {{ Item.description }}
+          </ion-text>
+
         </ion-card-content>
       </ion-card>
 
@@ -56,7 +75,7 @@
         </ion-item>
 
         <ion-card-content style="margin-top: 20px">
-          <ion-select placeholder="Select status" v-model="selected_status">
+          <ion-select v-model="selected_status" placeholder="Select status">
             <ion-select-option value="">None</ion-select-option>
             <ion-select-option value="draft">Draft</ion-select-option>
             <ion-select-option value="pending">Pending</ion-select-option>
@@ -97,8 +116,9 @@ import {
   IonCardTitle,
   IonCardSubtitle,
   IonIcon,
-    IonLoading,
-    IonBackButton,
+  IonLoading,
+  IonBackButton,
+  IonText,
   createAnimation
 } from "@ionic/vue";
 
@@ -130,7 +150,8 @@ export default {
     IonCardSubtitle,
     IonIcon,
     IonLoading,
-    IonBackButton
+    IonBackButton,
+    IonText
   },
   name: "single_shipping",
   setup() {
@@ -164,14 +185,14 @@ export default {
     return {
       is_model_open: false,
       Item: {},
-      is_loading:false,
-      selected_status:'',
-      data :{},
+      is_loading: false,
+      selected_status: '',
+      data: {},
     }
   },
-  watch:{
-    'selected_status'(val){
-      if(val){
+  watch: {
+    'selected_status'(val) {
+      if (val) {
         this.is_loading = true
         this.updateState()
       }
@@ -198,17 +219,17 @@ export default {
       this.is_loading = false
     },
 
-    async updateState(){
-      try{
-        if(this.selected_status !== this.data.status){
+    async updateState() {
+      try {
+        if (this.selected_status !== this.data.status) {
           this.is_loading = true
           let payload = {
             status: this.selected_status
           }
-          await trackingAPI.UpdateShippingItems(this.data._id,payload)
+          await trackingAPI.UpdateShippingItems(this.data._id, payload)
           this.closeModel()
         }
-      }catch (e) {
+      } catch (e) {
 
       }
       this.is_loading = false
