@@ -9,39 +9,50 @@
       </ion-toolbar>
       <ion-list>
         <ion-item style="text-align: center">
-          <ion-row>
+          <ion-row style="padding-top: 5%">
 <!--            <ion-col size="12">-->
 <!--              <ion-avatar style="display: flex;justify-content: center;">-->
 <!--                <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>-->
 <!--              </ion-avatar>-->
 <!--            </ion-col>-->
-            <ion-col size="12">
-              <ion-text color="dark">
-                <h1>{{ single_staff.first_name }} {{ single_staff.last_name }}</h1>
-              </ion-text>
-            </ion-col>
-            <ion-col size="12">
-              <ion-text color="dark">
-                <h3>Date Of Birth : {{ single_staff.DOB }}</h3>
-              </ion-text>
-            </ion-col>
-            <ion-col size="12">
-              <ion-text color="dark">
-                <h3>Role : {{ single_staff.account_type }}</h3>
-              </ion-text>
-            </ion-col>
-            <ion-col size="12">
-              <ion-text color="dark">
-                <h3>Gmail : {{ single_staff.email }}</h3>
-              </ion-text>
-            </ion-col>
-            <ion-col size="12">
-              <ion-text color="dark">
-                <h3>Mobile : {{ single_staff.mobile }}</h3>
+            <ion-col size="6">
+              <ion-label>First Name</ion-label>
+              <ion-text color="medium">
+                <h6>{{ single_staff.first_name }}</h6>
               </ion-text>
             </ion-col>
             <ion-col size="6">
-              <ion-button color="secondary" expand="block" shape="round" @click="updateStaff">
+              <ion-label>Last Name</ion-label>
+              <ion-text color="medium">
+                <h6> {{ single_staff.last_name }}</h6>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <label>Date Of Birth</label>
+              <ion-text color="medium">
+                <h6>{{ new Date(single_staff.DOB).toDateString()}}</h6>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <label>Role</label>
+              <ion-text color="medium">
+                <h6>{{ single_staff.account_type }}</h6>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <label>Email</label>
+              <ion-text color="medium">
+                <h6>{{ single_staff.email }}</h6>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <label>Mobile</label>
+              <ion-text color="medium">
+                <h6>{{ single_staff.mobile }}</h6>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button style="margin-top: 5%" color="secondary" expand="block" shape="round" @click="updateStaff">
                 Edit
               </ion-button>
             </ion-col>
