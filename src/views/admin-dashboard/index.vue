@@ -3,44 +3,44 @@
 
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
-      <ion-tab-bar style="padding-bottom:20px" slot="bottom">
+      <ion-tab-bar style="padding-bottom:20px;" slot="bottom">
 
         <ion-tab-button
             href="/admin_home/dash_board"
             selected
             tab="dash_board"
-            v-on:click="afterTabChange('dash_board')">
+            v-on:click="afterTabChange('dash_board')" style="background-color: #0d0d0d">
           <ion-icon :icon="homeOutline"/>
-          <ion-label v-show="tabName==='dash_board'" style="color: #000000;">Dashboard</ion-label>
+          <ion-label v-show="tabName==='dash_board'" style="color: #5bf5a8;">Dashboard</ion-label>
           <ion-label v-show="tabName !=='dash_board'" style="color: #ffffff;">Dashboard</ion-label>
         </ion-tab-button>
 
         <ion-tab-button
             href="/admin_home/staff"
             tab="staff"
-            v-on:click="afterTabChange('staff')">
-          <ion-icon :icon="calendarOutline"/>
-          <ion-label v-show="tabName==='staff'" style="color: #000000;">Staff</ion-label>
+            v-on:click="afterTabChange('staff')" style="background-color: #0d0d0d">
+          <ion-icon :icon="peopleOutline"/>
+          <ion-label v-show="tabName==='staff'" style="color: #5bf5a8;">Staff</ion-label>
           <ion-label v-show="tabName !=='staff'" style="color: #ffffff;">Staff</ion-label>
         </ion-tab-button>
 
         <ion-tab-button
             href="/admin_home/tracking"
             tab="tracking"
-            v-on:click="afterTabChange('tracking')">
-          <ion-icon :icon="timeOutline"/>
-          <ion-label v-show="tabName==='tracking'" style="color: #000000;">Tracking</ion-label>
+            v-on:click="afterTabChange('tracking')" style="background-color: #0d0d0d">
+          <ion-icon :icon="mapOutline"/>
+          <ion-label v-show="tabName==='tracking'" style="color: #5bf5a8;">Tracking</ion-label>
           <ion-label v-show="tabName !=='tracking'" style="color: #ffffff;">Tracking</ion-label>
 
         </ion-tab-button>
-        <ion-tab-button
-            href="/tabs/leaves"
-            tab="leaves"
-            v-on:click="afterTabChange('leaves')">
-          <ion-icon :icon="cafeOutline"/>
-          <ion-label v-show="tabName==='leaves'" style="color: #000000;">Leaves</ion-label>
-          <ion-label v-show="tabName !=='leaves'" style="color: #ffffff;">Leaves</ion-label>
-        </ion-tab-button>
+<!--        <ion-tab-button-->
+<!--            href="/tabs/leaves"-->
+<!--            tab="leaves"-->
+<!--            v-on:click="afterTabChange('leaves')">-->
+<!--          <ion-icon :icon="cafeOutline"/>-->
+<!--          <ion-label v-show="tabName==='leaves'" style="color: #000000;">Leaves</ion-label>-->
+<!--          <ion-label v-show="tabName !=='leaves'" style="color: #ffffff;">Leaves</ion-label>-->
+<!--        </ion-tab-button>-->
       </ion-tab-bar>
     </ion-tabs>
     <!--      <ion-tab-bar slot="bottom">-->
@@ -50,7 +50,7 @@
 
 <script>
 import {IonIcon, IonLabel, IonPage, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from '@ionic/vue';
-import {cafeOutline, calendarOutline, homeOutline, timeOutline} from 'ionicons/icons';
+import {cafeOutline, calendarOutline, homeOutline, timeOutline,peopleOutline, mapOutline} from 'ionicons/icons';
 import {useRouter} from "vue-router";
 import {defineComponent} from "vue";
 
@@ -76,6 +76,8 @@ export default defineComponent({
       calendarOutline,
       cafeOutline,
       homeOutline,
+      mapOutline,
+      peopleOutline,
       timeOutline,
       router,
     }
