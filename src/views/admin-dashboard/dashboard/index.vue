@@ -10,7 +10,10 @@
         <ion-list>
 
           <ion-grid>
-            <div class="small-header anim" style="--delay: .3s; margin-left: 5px">Overview</div>
+
+            <div class="small-header anim" style="--delay: .3s; margin-left: 5px"> <ion-text color="#000000">
+              <h3>Overview</h3>
+            </ion-text></div>
             <ion-row>
               <ion-col size="12">
                 <div class="main-blogs">
@@ -136,6 +139,7 @@ import {
   IonSelect,
   IonGrid,
   IonSelectOption,
+    IonText
 } from '@ionic/vue';
 
 export default {
@@ -165,6 +169,7 @@ export default {
     IonSelect,
     IonGrid,
     IonSelectOption,
+    IonText
   },
   name: "index"
 }
