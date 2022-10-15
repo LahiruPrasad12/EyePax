@@ -33,6 +33,7 @@
           <ion-label v-show="tabName !=='tracking'" style="color: #ffffff;">Tracking</ion-label>
 
         </ion-tab-button>
+        
 <!--        <ion-tab-button-->
 <!--            href="/tabs/leaves"-->
 <!--            tab="leaves"-->
