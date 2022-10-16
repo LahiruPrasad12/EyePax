@@ -26,22 +26,24 @@
                   <ion-select-option value="Declined">Declined</ion-select-option>
                 </ion-select>
             </ion-col>
-            <ion-col v-for="request in all_requests" size="6"  style="margin-top: 10%">
+            <ion-col v-for="request in all_requests" size="6" @click="viewSingleRequest(request)" style="margin-top: 10%">
               <div class="video anim" style="--delay: .5s; text-align: center; margin-left: 5px; margin-right: px">
                 <div class="video-wrapper">
                   <img src="https://i.postimg.cc/Qtk5bhM0/staff-c.jpg" type="" v-if="request.status === 'Pending'">
                   <img src="https://i.postimg.cc/RV3hCvzy/item.jpg" type="" v-if="request.status === 'Approved'">
                   <img src="https://i.postimg.cc/50HTYKN4/sup.jpg" type="" v-if="request.status === 'Declined'">
                 </div>
-                <div class="video-name">Request : {{ request.request }}</div>
-                <div class="video-by">Status : {{ request.status }}</div>
+                <div class="video-name"> {{ request.request.substring(0, 50) }}</div>
+                <div class="video-by"  v-if="request.status === 'Approved'">Status : {{ request.status }}</div>
+                <div class="video-by2"  v-if="request.status === 'Declined'">Status : {{ request.status }}</div>
+                <div class="video-by3"  v-if="request.status === 'Pending'">Status : {{ request.status }}</div>
                 <div class="video-name2"></div>
               </div>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-list>
-      <!-- <single_shipment ref="single_shipment" @closeSingleShippingModel="closeSingleShippingModel()"/> -->
+      <single_request ref="single_request" @closeSingleRequestModel="closeSingleRequestModel()"/>
     </ion-content>
   </ion-page>
 </template>
@@ -81,7 +83,7 @@ import {
 } from '@ionic/vue';
 import {useRouter} from "vue-router";
 import SupplierApis from "@/apis/modules/supplier_apis/supplier_apis";
-// import single_shipment from "./models/single_shipping";
+import single_request from "./models/single_request";
 
 export default {
   components: {
@@ -109,7 +111,7 @@ export default {
     IonFab, IonFabButton, IonIcon, IonFabList, IonButton,
     IonSelect,
     IonSelectOption,
-    // single_shipment,
+    single_request,
     IonGrid,
     IonText
   },
@@ -139,16 +141,16 @@ export default {
     async getAllRequests(status) {
       try {
         this.is_loading = true
-        this.all_requests = (await SupplierApis.getAllRequests(status)).data.data.Requests
+        this.all_requests = (await SupplierApis.getAllRequests(status)).data.data.requests
       } catch (e) {
 
       }
       this.is_loading = false
     },
-    // viewSingleItem(data) {
-    //   this.$refs.single_shipment.handleModel(data)
-    // },
-    closeSingleShippingModel() {
+    viewSingleRequest(data) {
+      this.$refs.single_request.handleModel(data)
+    },
+    closeSingleRequestModel() {
       this.getAllRequests(this.selected_status)
     },
   },

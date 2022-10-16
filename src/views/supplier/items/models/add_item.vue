@@ -92,6 +92,7 @@ import {
   IonCardHeader,
   IonCardContent,
   IonCardTitle,
+  IonTextarea,
   createAnimation
 } from "@ionic/vue";
 
@@ -121,6 +122,7 @@ export default {
     IonCardContent,
     IonCardTitle,
     IonText,
+    IonTextarea,
     IonIcon
   },
   name: "add_student",
