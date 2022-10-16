@@ -72,6 +72,7 @@ import {
   IonSelect,
   IonSelectOption,
   IonSpinner,
+  IonTextarea,
   createAnimation
 } from "@ionic/vue";
 
@@ -94,6 +95,8 @@ export default {
     IonInput,
     IonSelect,
     IonSelectOption,
+    IonSpinner,
+    IonTextarea,
     IonSpinner
   },
   name: "update_staff",

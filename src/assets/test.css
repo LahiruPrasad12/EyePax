@@ -542,6 +542,13 @@ body:before {
     position: relative;
     color: white;
 }
+.video-by3 {
+    transition: 0.3s;
+    padding: 20px 20px 0px;
+    display: inline-flex;
+    position: relative;
+    color: white;
+}
 .video-by:before {
     content: "";
     background-color: #22b07d;
@@ -562,10 +569,23 @@ body:before {
     top: 26px;
     right: 5px;
 }
+.video-by3:before {
+    content: "";
+    background-color: #d3ac2a;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: 26px;
+    right: 5px;
+}
 .video-by.offline:before {
     background-color: #ff7551;
 }
 .video-by2.offline:before {
+    background-color: #ff7551;
+}
+.video-by3.offline:before {
     background-color: #ff7551;
 }
 .video-time {

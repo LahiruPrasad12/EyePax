@@ -7,63 +7,58 @@
           message="Please wait..."
       />
       <ion-toolbar class="toolbar" style="padding-top: 10px; ">
-        <ion-title>{{ Item.name }}'s Details</ion-title>
+        <ion-title>{{ Request1._id }}'s Details</ion-title>
 
         <ion-buttons slot="end">
-          <ion-button @click="closeModel">Close</ion-button>
+          <ion-button @click="closeModel">X Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
       <ion-card>
         <ion-card-header>
-          <ion-card-title>{{ Item.name }}</ion-card-title>
-          <ion-card-subtitle>{{ Item.item_code }}</ion-card-subtitle>
+          <ion-card-title>{{ Request1._id }}</ion-card-title>
+          <ion-card-subtitle>Request ID</ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
           <ion-row>
             <ion-col size="3">
               <ion-label>
-                  Item Code
+                  Supplier ID
               </ion-label>
               <ion-text color="medium">
-                <h6>{{ Item.item_code }}</h6>
+                <h6>{{ Request1.supplier_id }}</h6>
               </ion-text>
 
             </ion-col>
             <ion-col size="3">
-              <ion-label>Brand</ion-label>
+              <ion-label>Status</ion-label>
               <ion-text color="medium">
-                <h6>{{ Item.brand }}</h6>
+                <h6>{{ Request1.status }}</h6>
               </ion-text>
 
             </ion-col>
             <ion-col size="6">
-              <ion-label>Name</ion-label>
+              <ion-label>Updated At</ion-label>
               <ion-text color="medium">
-                <h6>{{ Item.name }}</h6>
+                <h6>{{ Request1.updated_at }}</h6>
               </ion-text>
             </ion-col>
             <ion-col size="3">
-              <ion-label>Quantity</ion-label>
+              <ion-label>Recived Date</ion-label>
               <ion-text color="medium">
-                <h6>{{ Item.qty }}</h6>
+                <h6>{{ Request1.created_at }}</h6>
               </ion-text>
             </ion-col>
             <ion-col size="3">
-              <ion-label>Price</ion-label>
+              <ion-label>Due Date</ion-label>
               <ion-text color="medium">
-                <h6>{{ Item.price }}</h6>
-              </ion-text>
-            </ion-col>
-            <ion-col size="6">
-              <ion-label>Shipping Date</ion-label>
-              <ion-text color="medium">
-                <h6>{{ new Date(Item.created_at).toDateString() }}</h6>
+                <h6>{{ Request1.due_date }}</h6>
               </ion-text>
             </ion-col>
           </ion-row>
           <ion-text color="medium">
-            {{ Item.description }}
+            <ion-label>Request Details</ion-label>
+            {{ Request1.request }}
           </ion-text>
 
         </ion-card-content>
@@ -71,15 +66,21 @@
 
       <ion-card>
         <ion-item>
-          <ion-label>Update Shipping Item</ion-label>
+          <ion-label>Update Request</ion-label>
         </ion-item>
 
-        <ion-card-content style="margin-top: 20px">
-          <ion-select v-model="selected_status" placeholder="Select status">
-            <ion-select-option value="">None</ion-select-option>
-            <ion-select-option value="draft">Draft</ion-select-option>
-            <ion-select-option value="pending">Pending</ion-select-option>
-            <ion-select-option value="shipped">Shipped</ion-select-option>
+        <ion-card-content style="margin-top: 20px" v-if="Request1.status === 'Pending'">
+          <ion-select v-model="selected_status" placeholder="Select Status">
+            <ion-select-option value="Pending">Pending</ion-select-option>
+            <ion-select-option value="Approved">Approved</ion-select-option>
+            <ion-select-option value="Declined">Declined</ion-select-option>
+          </ion-select>
+        </ion-card-content>
+        <ion-card-content style="margin-top: 20px" v-else>
+          <ion-select v-model="selected_status" placeholder="Select Status" value="disabled" disabled>
+            <ion-select-option value="Pending">Pending</ion-select-option>
+            <ion-select-option value="Approved">Approved</ion-select-option>
+            <ion-select-option value="Declined">Declined</ion-select-option>
           </ion-select>
         </ion-card-content>
       </ion-card>
@@ -89,7 +90,7 @@
 </template>
 
 <script>
-import trackingAPI from "@/apis/modules/admin_apis/tracking";
+import SupplierApis from "@/apis/modules/supplier_apis/supplier_apis";
 import {
   IonModal,
   IonContent,
@@ -184,7 +185,7 @@ export default {
   data() {
     return {
       is_model_open: false,
-      Item: {},
+      Request1: {},
       is_loading: false,
       selected_status: '',
       data: {},
@@ -201,17 +202,17 @@ export default {
   methods: {
     handleModel(data) {
       if (data) {
-        this.getSingleItem(data)
+        this.getSingleRequest(data)
       }
       this.is_model_open = true
 
     },
 
-    async getSingleItem(data) {
+    async getSingleRequest(data) {
       try {
         this.is_loading = true
         this.data = data
-        this.Item = (await trackingAPI.getItem(data.item)).data.data.Item
+        this.Request1 = (await SupplierApis.getRequest(data.request)).data.data.Request1
         this.selected_status = data.status
       } catch (e) {
 
@@ -226,7 +227,7 @@ export default {
           let payload = {
             status: this.selected_status
           }
-          await trackingAPI.UpdateShippingItems(this.data._id, payload)
+          await SupplierApis.updateRequest(this.data._id, payload)
           this.closeModel()
         }
       } catch (e) {
