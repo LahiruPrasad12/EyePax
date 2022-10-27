@@ -2,7 +2,7 @@
   <ion-modal :enter-animation="enterAnimation" :is-open="is_open" :leave-animation="leaveAnimation">
     <ion-content fullscreen>
       <ion-toolbar class="toolbar" style="padding-top: 10px">
-        <ion-title style="align-items: center;">ADD ITEM</ion-title>
+        <ion-title style="align-items: center;">CREATE REQUEST</ion-title>
         <ion-buttons slot="end">
           <ion-button style="--color: white;" @click="dismiss()">X Close</ion-button>
         </ion-buttons>
@@ -10,35 +10,16 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-            <ion-label position="floating">*Item Code</ion-label>
-            <ion-input v-model="form.item_code" class="u-input" maxlength="10" placeholder="e.g. EP-XXXX"
-                       type="text"></ion-input>
+            <ion-label position="floating">*Seller</ion-label>
+            <ion-select :options="item" v-model="form.supplier_id" class="u-input" placeholder="Select a Seller"
+                       ></ion-select>
           </ion-col>
           <ion-col size="6">
-            <ion-label position="floating">*Item Name</ion-label>
-            <ion-input class="u-input" v-model="form.name" clear-input required type="text" maxlength="50" placeholder="e.g. Cement"></ion-input>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label position="floating">*Brand</ion-label>
-            <ion-input class="u-input" v-model="form.brand" clear-input required type="text" maxlength="30" placeholder="e.g. Ramco/S-lon"></ion-input>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label position="floating">*Price</ion-label>
-            <ion-input class="u-input" v-model="form.price" clear-input required type="number" min="0" placeholder="e.g. 10,000LKR" @keydown="$event.key === '-' ? $event.preventDefault() : null"></ion-input>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label position="floating">*Quantity</ion-label>
-            <ion-input class="u-input" v-model="form.qty" clear-input required type="number" min="0" maxlength="10" placeholder="e.g. 12" @keydown="$event.key === '-' ? $event.preventDefault() : null"></ion-input>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label position="floating">Availabitlity</ion-label>
-            <ion-select class="u-input" v-model="form.enabled" placeholder="Select Status" required>
-              <ion-select-option value="true">Active</ion-select-option>
-              <ion-select-option value="false">Deactive</ion-select-option>
-            </ion-select>
+            <ion-label position="floating">*Due Date</ion-label>
+            <ion-input class="u-input" v-model="form.due_date" clear-input required type="date" ></ion-input>
           </ion-col>
           <ion-col size="12">
-            <ion-label position="floating">Description</ion-label>
+            <ion-label position="floating">*Request</ion-label>
             <ion-textarea class="u-input" v-model="form.description" clear-input type="text" maxlength="1000" style="height:100px;" placeholder="e.g. Lorem Ipsum is simply dummy text of the printing and typesetting industry...." ></ion-textarea>
           </ion-col>
         </ion-row>
@@ -174,14 +155,14 @@ export default {
       this.is_open = !this.is_open
       this.$emit('closeModel')
     },
-    openAddItemModel() {
+    openAddRequestModel() {
       this.is_open = true
     },
     async saveData() {
       try {
         this.is_btn_loading = true
         await SupplierApis.createItem(this.form)
-        await this.successToast('Item Added Successfully')
+        await this.successToast('Request Sent Successfully')
         this.dismiss()
       } catch (e) {
         await this.dangerToast(e)

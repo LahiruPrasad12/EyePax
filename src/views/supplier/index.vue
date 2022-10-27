@@ -9,7 +9,7 @@
             href="/supplier/home"
             tab="home"
             v-on:click="afterTabChange('home')" style="background-color: black">
-          <ion-icon :icon="peopleOutline"/>
+          <ion-icon :icon="gridOutline"/>
           <ion-label v-show="tabName==='home'" style="color: #5bf5a8;">Products</ion-label>
           <ion-label v-show="tabName !=='home'" style="color: #ffffff;">Products</ion-label>
         </ion-tab-button>
@@ -18,9 +18,9 @@
             href="/supplier/request"
             tab="request"
             v-on:click="afterTabChange('request')" style="background-color: black">
-          <ion-icon :icon="mapOutline"/>
-          <ion-label v-show="tabName==='request'" style="color: #5bf5a8;">Requests</ion-label>
-          <ion-label v-show="tabName !=='request'" style="color: #ffffff;">Requests</ion-label>
+          <ion-icon :icon="receiptOutline"/>
+          <ion-label v-show="tabName==='request'" style="color: #5bf5a8;">Supply Requests</ion-label>
+          <ion-label v-show="tabName !=='request'" style="color: #ffffff;">Supply Requests</ion-label>
 
         </ion-tab-button>
       </ion-tab-bar>
@@ -30,7 +30,7 @@
 
 <script>
 import {IonIcon, IonLabel, IonPage, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from '@ionic/vue';
-import {cafeOutline, calendarOutline, homeOutline, timeOutline,peopleOutline, mapOutline} from 'ionicons/icons';
+import {cafeOutline, calendarOutline, homeOutline, timeOutline,peopleOutline, gridOutline, receiptOutline, mapOutline} from 'ionicons/icons';
 import {useRouter} from "vue-router";
 import {defineComponent} from "vue";
 
@@ -59,6 +59,8 @@ export default defineComponent({
       mapOutline,
       peopleOutline,
       timeOutline,
+      gridOutline,
+      receiptOutline,
       router,
     }
   },

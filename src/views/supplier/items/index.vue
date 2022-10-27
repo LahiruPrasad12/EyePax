@@ -33,7 +33,7 @@
               <ion-card class="video anim" style="--delay: .5s; border-color: #0d0d0d;">
                   <img src="https://i.postimg.cc/QMkZFG1K/layers-animat.gif" type="" v-if="item.enabled === true">
                   <img src="https://i.postimg.cc/SRGG9dVr/comp-3.gif" type="" v-if="item.enabled === false">
-                  <div class="video-name">{{ item.name }}</div>
+                  <div class="video-name">{{ item.name.substring(0, 7) }}</div>
                   <div class="video-by" v-if="item.enabled === true">Status : {{ item.enabled?"Active":"Deactive" }}</div>
                   <div class="video-by2" v-if="item.enabled === false">Status : {{ item.enabled?"Active":"Deactive" }}</div>
                 <div class="video-name2"></div>

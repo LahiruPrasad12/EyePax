@@ -2,9 +2,9 @@
   <ion-modal :is-open="is_model_open" :enter-animation="enterAnimation" :leave-animation="leaveAnimation" >
     <ion-content fullscreen>
       <ion-toolbar class="toolbar" style="padding-top: 10px">
-        <ion-title style="margin-left: 20%">Update {{form.item_code}}</ion-title>
+        <ion-title style="align-items: center;">Update {{form.item_code}}</ion-title>
         <ion-buttons slot="end">
-          <ion-button @click="dismiss()">Close</ion-button>
+          <ion-button style="--color: white;" @click="dismiss()">X Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
       <ion-grid>
@@ -31,7 +31,7 @@
           </ion-col>
           <ion-col size="6">
           <ion-label position="floating">Availabitlity</ion-label>
-          <ion-select class="u-input" v-model="enabled" placeholder="Select Status">
+          <ion-select class="u-input" v-model="form.enabled" placeholder="Select Status">
             <ion-select-option value="true">Active</ion-select-option>
             <ion-select-option value="false">Deactive</ion-select-option>
           </ion-select>

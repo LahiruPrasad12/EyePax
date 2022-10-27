@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from '@ionic/vue-router';
 import Auth from './modules/auth'
 import SupplierTab from '../views/supplier/index'
+import StockTab from '../views/stock/index'
 import TabsPage from '../views/admin-dashboard/index'
 
 const routes = [
@@ -42,6 +43,24 @@ const routes = [
             {
                 path: 'request',
                 component: () => import('@/views/supplier/request/index')
+            }
+        ]
+    },
+    {
+        path: '/stock/',
+        component: StockTab,
+        children: [
+            {
+                path: 'home',
+                component: () => import('@/views/stock/stocks/index')
+            },
+            {
+                path: 'purchaseorder',
+                component: () => import('@/views/supplier/request/index')
+            },
+            {
+                path: 'supplyrequest',
+                component: () => import('@/views/stock/request/index')
             }
         ]
     }

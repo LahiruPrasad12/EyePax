@@ -14,7 +14,7 @@
       />
       <ion-list>
         <ion-list-header><ion-text color="medium">
-          <h3>My Supply Requests</h3>
+          <h3>All Supply Requests</h3>
         </ion-text> </ion-list-header>
         <ion-grid>
           <ion-row>
@@ -43,12 +43,19 @@
           </ion-row>
         </ion-grid>
       </ion-list>
+      <ion-fab slot="fixed" class="mb-3" horizontal="end" vertical="bottom">
+        <ion-fab-button id="open-modal" expand="block" @click="addRequest">
+          <ion-icon :icon="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <AddRequest ref="addRequest" @closeModel="closeModel()"/>
       <single_request ref="single_request" @closeSingleRequestModel="closeSingleRequestModel()"/>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
+import {defineComponent} from 'vue';
 import {pencil} from 'ionicons/icons';
 import {
   IonPage, IonAvatar,
@@ -82,8 +89,10 @@ import {
   IonText
 } from '@ionic/vue';
 import {useRouter} from "vue-router";
-import SupplierApis from "@/apis/modules/supplier_apis/supplier_apis";
+import {add} from 'ionicons/icons';
+import SupplierApis from "@/apis/modules/stock_apis/stock_apis";
 import single_request from "./models/single_request";
+import AddRequest from './models/add_request'
 
 export default {
   components: {
@@ -112,6 +121,7 @@ export default {
     IonSelect,
     IonSelectOption,
     single_request,
+    AddRequest,
     IonGrid,
     IonText
   },
@@ -128,7 +138,8 @@ export default {
     const router = useRouter();
     return {
       router,
-      pencil
+      pencil,
+      add
     }
   },
   watch: {
@@ -152,6 +163,9 @@ export default {
     },
     closeSingleRequestModel() {
       this.getAllRequests(this.selected_status)
+    },
+    addRequest() {
+      this.$refs.addRequest.openAddRequestModel()
     },
   },
 
