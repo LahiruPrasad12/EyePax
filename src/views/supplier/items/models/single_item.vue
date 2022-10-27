@@ -4,7 +4,7 @@
       <ion-toolbar>
         <ion-title >{{ item.item_code }}</ion-title>
         <ion-buttons slot="end">
-          <ion-button color="white" @click="closeModel()">X Close</ion-button>
+          <ion-button style="--color: white;" @click="closeModel()">X Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
       <ion-list>

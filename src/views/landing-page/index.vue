@@ -6,10 +6,11 @@
         <ion-img style="
               width:100%;
               height:100%;"
-                 src="assets/icon/2_Welcome-Screen1.png"></ion-img>
+                 src="https://i.postimg.cc/ZKKjz1yd/diseno-web.gif"></ion-img>
       </div>
-      <div class=" ion-text-center padding-header">
-        <h2>Welcome to EyePax.</h2>
+      <div style="margin-top:8%" class="ion-text-center padding-header">
+        <h1 >Welcome to EyePax</h1>
+        <h6 style="margin-top:0%">Constructions</h6>
         <div
             class="lorem-header"
             style="
