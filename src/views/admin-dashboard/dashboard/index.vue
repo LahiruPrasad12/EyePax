@@ -3,6 +3,9 @@
     <ion-header translucent >
       <ion-toolbar class="toolbar" style="padding-top: 10px; ">
         <ion-title>DASHBOARD</ion-title>
+        <div class="ion-activatable ripple-parent circle">
+      <ion-ripple-effect></ion-ripple-effect>
+    </div>
       </ion-toolbar>
     </ion-header>
     <ion-content class="main-container">
@@ -139,7 +142,8 @@ import {
   IonSelect,
   IonGrid,
   IonSelectOption,
-    IonText
+    IonText,
+    IonRippleEffect
 } from '@ionic/vue';
 
 export default {
@@ -169,7 +173,8 @@ export default {
     IonSelect,
     IonGrid,
     IonSelectOption,
-    IonText
+    IonText,
+    IonRippleEffect
   },
   name: "index"
 }
