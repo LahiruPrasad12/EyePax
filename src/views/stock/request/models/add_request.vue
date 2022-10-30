@@ -36,6 +36,7 @@
 
 <script>
 import SupplierApis from "@/apis/modules/supplier_apis/supplier_apis";
+import staffApis from '@/apis/modules/admin_apis/staff_apis'
 import {
   addCircleOutline,
   arrowDownCircleOutline,
@@ -139,14 +140,11 @@ export default {
     return {
       is_btn_loading: false,
       is_open: false,
+      item: [],
       form: {
-        item_code: '',
-        name: '',
-        qty: '',
-        price: '',
-        brand: '',
-        description: '',
-        enabled: ''
+        supplier_id: '',
+        request:'',
+        due_date:''
       }
     }
   },
@@ -158,17 +156,39 @@ export default {
     openAddRequestModel() {
       this.is_open = true
     },
-    async saveData() {
+    async getAllItems() {
+      try {
+        this.is_table_loading = true
+        let respond = (await staffApis.getAllStaff('supplier')).data.data.users
+        this.item = respond.map((e, index) => ({
+          value: e._id,
+          label: e.first_name
+        }))
+      } catch (e) {
+
+      }
+      this.is_table_loading = false
+    },
+    async createStock() {
       try {
         this.is_btn_loading = true
-        await SupplierApis.createItem(this.form)
-        await this.successToast('Request Sent Successfully')
-        this.dismiss()
+        if (await this.$refs.createItemValidation.validate()) {
+          console.log(this.form)
+          let payload = {
+            supplier_id: this.form.supplier_id.value,
+            due_date: this.form.due_date,
+            request:this.form.request
+          }
+          await StockApis.makeRequest(payload)
+          this.success('Send Request')
+          this.closeModal()
+        }
       } catch (e) {
-        await this.dangerToast(e)
+        this.danger('This Stock is Already Exists')
       }
       this.is_btn_loading = false
     },
+
   },
 }
 </script>
