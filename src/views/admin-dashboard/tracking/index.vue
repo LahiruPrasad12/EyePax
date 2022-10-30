@@ -21,17 +21,18 @@
             <ion-col size="12" class="u-input">
                 <ion-select v-model="selected_status" placeholder="Select status">
                   <ion-select-option value="">None</ion-select-option>
-                  <ion-select-option value="draft">Draft</ion-select-option>
-                  <ion-select-option value="pending">Pending</ion-select-option>
-                  <ion-select-option value="shipped">Shipped</ion-select-option>
+                  <ion-select-option value="Draft">Draft</ion-select-option>
+                  <ion-select-option value="Pending">Pending</ion-select-option>
+                  <ion-select-option value="Delivered">Shipped</ion-select-option>
                 </ion-select>
             </ion-col>
+            <!-- {{all_items}} -->
             <ion-col v-for="item in all_items" size="6" @click="viewSingleItem(item)" style="margin-top: 10%">
               <div class="video anim" style="--delay: .5s; text-align: center; margin-left: 5px; margin-right: px">
                 <div class="video-wrapper">
-                  <img src="https://i.postimg.cc/Qtk5bhM0/staff-c.jpg" type="" v-if="item.status === 'draft'">
-                  <img src="https://i.postimg.cc/RV3hCvzy/item.jpg" type="" v-if="item.status === 'shipped'">
-                  <img src="https://i.postimg.cc/50HTYKN4/sup.jpg" type="" v-if="item.status === 'pending'">
+                  <img src="https://i.postimg.cc/Qtk5bhM0/staff-c.jpg" type="" v-if="item.status === 'Draft'">
+                  <img src="https://i.postimg.cc/RV3hCvzy/item.jpg" type="" v-if="item.status === 'Delivered'">
+                  <img src="https://i.postimg.cc/50HTYKN4/sup.jpg" type="" v-if="item.status === 'Pending'">
                 </div>
                 <div class="video-by">Status : {{ item.status }}</div>
                 <div class="video-name">Quantity : {{ item.qty }}</div>
@@ -139,13 +140,24 @@ export default {
     async getAllShippingItems(status) {
       try {
         this.is_loading = true
-        this.all_items = (await trackingAPI.getAllShippingItems(status)).data.data.ShippingItems
+        let respond = (await trackingAPI.getAllShippingItems(status)).data
+        this.all_items = respond.map((x,index)=>{
+          return {
+            id:index,
+            _id: x.items._id,
+            status: x.orders.status,
+            qty: x.orders.quantity
+          }
+        })
+        console.log(respond)
+        // this.all_items = respond
       } catch (e) {
 
       }
       this.is_loading = false
     },
     viewSingleItem(data) {
+      console.log(data)
       this.$refs.single_shipment.handleModel(data)
     },
     closeSingleShippingModel() {
