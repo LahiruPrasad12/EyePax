@@ -32,8 +32,8 @@
           <ion-col size="6">
           <ion-label position="floating">Availabitlity</ion-label>
           <ion-select class="u-input" v-model="form.enabled" placeholder="Select Status">
-            <ion-select-option value="true">Active</ion-select-option>
-            <ion-select-option value="false">Deactive</ion-select-option>
+            <ion-select-option value = "true" >Active</ion-select-option>
+            <ion-select-option value = "false" > Deactive</ion-select-option>
           </ion-select>
         </ion-col>
           <ion-col size="12">
@@ -151,8 +151,9 @@ export default {
     },
     async updateItem() {
       try {
+        console.log(this.form)
         this.is_btn_loading = true
-        await SupplierApis.updateItem(this.form)
+        await SupplierApis.updateItem(this.form._id, this.form)
         await this.successToast('Item Updated Successfully')
         this.dismiss()
       } catch (e) {

@@ -44,7 +44,7 @@
               </ion-text>
             </ion-col>
             <ion-col size="3">
-              <ion-label>Recived Date</ion-label>
+              <ion-label>Recived At</ion-label>
               <ion-text color="medium">
                 <h6>{{ Request1.created_at }}</h6>
               </ion-text>
@@ -56,9 +56,9 @@
               </ion-text>
             </ion-col>
           </ion-row>
+          <ion-label>Request Details</ion-label>
           <ion-text color="medium">
-            <ion-label>Request Details</ion-label>
-            {{ Request1.request }}
+            <h6> {{ Request1.request }} </h6>
           </ion-text>
 
         </ion-card-content>
@@ -69,14 +69,7 @@
           <ion-label>Update Request</ion-label>
         </ion-item>
 
-        <ion-card-content style="margin-top: 20px" v-if="Request1.status === 'Pending'">
-          <ion-select v-model="selected_status" placeholder="Select Status">
-            <ion-select-option value="Pending">Pending</ion-select-option>
-            <ion-select-option value="Approved">Approved</ion-select-option>
-            <ion-select-option value="Declined">Declined</ion-select-option>
-          </ion-select>
-        </ion-card-content>
-        <ion-card-content style="margin-top: 20px" v-else>
+        <ion-card-content style="margin-top: 20px">
           <ion-select v-model="selected_status" placeholder="Select Status" value="disabled" disabled>
             <ion-select-option value="Pending">Pending</ion-select-option>
             <ion-select-option value="Approved">Approved</ion-select-option>
@@ -212,7 +205,7 @@ export default {
       try {
         this.is_loading = true
         this.data = data
-        this.Request1 = (await SupplierApis.getRequest(data.request)).data.data.Request1
+        this.Request1 = (await SupplierApis.getRequest(data._id)).data.data.Request1
         this.selected_status = data.status
       } catch (e) {
 

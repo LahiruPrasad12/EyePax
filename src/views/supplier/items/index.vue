@@ -49,7 +49,7 @@
       </ion-fab>
       <AddItem ref="addItem" @closeModel="closeModel()"/>
       <SingleItem ref="singleItem" @closeModel="closeModel()" @openUpdateItemModal="openUpdateItemModal"/>
-      <UpdateItem ref="updateItem"/>
+      <UpdateItem @closeModel="closeModel()" ref="updateItem"/>
     </ion-content>
 
   </ion-page>

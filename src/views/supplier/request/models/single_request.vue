@@ -44,7 +44,7 @@
               </ion-text>
             </ion-col>
             <ion-col size="3">
-              <ion-label>Recived Date</ion-label>
+              <ion-label>Recived At</ion-label>
               <ion-text color="medium">
                 <h6>{{ Request1.created_at }}</h6>
               </ion-text>
@@ -56,9 +56,9 @@
               </ion-text>
             </ion-col>
           </ion-row>
+          <ion-label>Request Details</ion-label>
           <ion-text color="medium">
-            <ion-label>Request Details</ion-label>
-            {{ Request1.request }}
+            <h6> {{ Request1.request }} </h6>
           </ion-text>
 
         </ion-card-content>
@@ -212,7 +212,7 @@ export default {
       try {
         this.is_loading = true
         this.data = data
-        this.Request1 = (await SupplierApis.getRequest(data.request)).data.data.Request1
+        this.Request1 = (await SupplierApis.getRequest(data._id)).data.data.Request1
         this.selected_status = data.status
       } catch (e) {
 
@@ -238,7 +238,7 @@ export default {
 
     closeModel() {
       this.is_model_open = !this.is_model_open
-      this.$emit('closeSingleShippingModel')
+      this.$emit('closeSingleRequestModel')
 
     }
   }
