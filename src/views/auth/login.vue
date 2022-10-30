@@ -265,6 +265,8 @@ export default defineComponent({
           this.router.push('/admin_home')
         }else if(respond.data.user.account_type === 'supplier'){
           this.router.push('/supplier/home')
+        }else if(respond.data.user.account_type === 'stock manager'){
+          this.router.push('/stock/home')
         }
       } catch (e) {
         await this.dangerToast(e.message)
