@@ -1,27 +1,53 @@
 <template>
   <ion-page>
-
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
-      <ion-tab-bar style="padding-bottom:20px; background-color: black" slot="bottom">
-
+      <ion-tab-bar
+        style="padding-bottom: 20px; background-color: black"
+        slot="bottom"
+      >
         <ion-tab-button
-            href="/supplier/home"
-            tab="home"
-            v-on:click="afterTabChange('home')" style="background-color: black">
-          <ion-icon :icon="gridOutline"/>
-          <ion-label v-show="tabName==='home'" style="color: #5bf5a8;">Products</ion-label>
-          <ion-label v-show="tabName !=='home'" style="color: #ffffff;">Products</ion-label>
+          href="/supplier/home"
+          tab="home"
+          v-on:click="afterTabChange('home')"
+          style="background-color: black"
+        >
+          <ion-icon :icon="gridOutline" />
+          <ion-label v-show="tabName === 'home'" style="color: #5bf5a8"
+            >Products</ion-label
+          >
+          <ion-label v-show="tabName !== 'home'" style="color: #ffffff"
+            >Products</ion-label
+          >
         </ion-tab-button>
 
         <ion-tab-button
-            href="/supplier/request"
-            tab="request"
-            v-on:click="afterTabChange('request')" style="background-color: black">
-          <ion-icon :icon="receiptOutline"/>
-          <ion-label v-show="tabName==='request'" style="color: #5bf5a8;">Supply Requests</ion-label>
-          <ion-label v-show="tabName !=='request'" style="color: #ffffff;">Supply Requests</ion-label>
-
+          href="/supplier/request"
+          tab="request"
+          v-on:click="afterTabChange('request')"
+          style="background-color: black"
+        >
+          <ion-icon :icon="receiptOutline" />
+          <ion-label v-show="tabName === 'request'" style="color: #5bf5a8"
+            >Supply Requests</ion-label
+          >
+          <ion-label v-show="tabName !== 'request'" style="color: #ffffff"
+            >Supply Requests</ion-label
+          >
+        </ion-tab-button>
+        <ion-tab-button
+          @click="confirmRequest()"
+          tab="profile"
+          v-on:click="afterTabChange('profile')"
+          style="background-color: black"
+        >
+          <ion-icon :icon="personCircleOutline" />
+          <ion-label v-show="tabName === 'logout'" style="color: #5bf5a8"
+            >Logout</ion-label
+          >
+          <ion-label v-show="tabName !== 'logout'" style="color: #ffffff"
+            >Logout</ion-label
+          >
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
@@ -29,13 +55,39 @@
 </template>
 
 <script>
-import {IonIcon, IonLabel, IonPage, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from '@ionic/vue';
-import {cafeOutline, calendarOutline, homeOutline, timeOutline,peopleOutline, gridOutline, receiptOutline, mapOutline} from 'ionicons/icons';
-import {useRouter} from "vue-router";
-import {defineComponent} from "vue";
+import {
+  IonIcon,
+  IonLabel,
+  IonPage,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  alertController,
+} from "@ionic/vue";
+import {
+  cafeOutline,
+  calendarOutline,
+  homeOutline,
+  timeOutline,
+  peopleOutline,
+  gridOutline,
+  receiptOutline,
+  mapOutline,
+} from "ionicons/icons";
+import { useRouter } from "vue-router";
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  components: {IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet},
+  components: {
+    IonLabel,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonPage,
+    IonRouterOutlet,
+  },
   methods: {
     async beforeTabChange() {
       this.no -= 1;
@@ -47,9 +99,33 @@ export default defineComponent({
     async afterTabChange(tabName) {
       this.tabName = tabName;
     },
+    async confirmRequest() {
+      const alert = await alertController.create({
+        header: "Are you sure you want logout?",
+        cssClass: "custom-alert",
+        buttons: [
+          {
+            text: "Yes",
+            cssClass: "alert-button-confirm",
+            handler: () => {
+              this.logout();
+            },
+          },
+          {
+            text: "No",
+            cssClass: "alert-button-cancel",
+          },
+        ],
+      });
+
+      await alert.present();
+    },
+    logout() {
+      localStorage.removeItem("token");
+      this.router.push("/login");
+    },
   },
   setup() {
-
     const router = useRouter();
     return {
       no: 1,
@@ -62,7 +138,7 @@ export default defineComponent({
       gridOutline,
       receiptOutline,
       router,
-    }
+    };
   },
   data() {
     return {
@@ -73,6 +149,6 @@ export default defineComponent({
       tab3: "",
       tab4: "",
     };
-  }
+  },
 });
 </script>
