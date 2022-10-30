@@ -58,7 +58,7 @@
           v-on:click="afterTabChange('profile')"
           style="background-color: black"
         >
-          <ion-icon :icon="personCircleOutline" />
+          <ion-icon :icon="logOutOutline" />
           <ion-label v-show="tabName === 'logout'" style="color: #5bf5a8"
             >Logout</ion-label
           >
@@ -90,6 +90,7 @@ import {
   peopleOutline,
   mapOutline,
   personCircleOutline,
+  logOutOutline
 } from "ionicons/icons";
 import { useRouter } from "vue-router";
 import { defineComponent } from "vue";
@@ -153,6 +154,7 @@ export default defineComponent({
       peopleOutline,
       timeOutline,
       personCircleOutline,
+      logOutOutline,
       router,
     };
   },
