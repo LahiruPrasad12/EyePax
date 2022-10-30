@@ -53,7 +53,7 @@
         </ion-tab-button>
 
         <ion-tab-button
-          @click="logout()"
+          @click="confirmRequest()"
           tab="profile"
           v-on:click="afterTabChange('profile')"
           style="background-color: black"
@@ -80,6 +80,7 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
+  alertController
 } from "@ionic/vue";
 import {
   cafeOutline,
@@ -114,10 +115,32 @@ export default defineComponent({
     async afterTabChange(tabName) {
       this.tabName = tabName;
     },
-    logout(){
-      localStorage.removeItem('token')
-      this.router.push('/login')
-    }
+     async confirmRequest() {
+      const alert = await alertController.create({
+        header: 'Are you sure you want logout?',
+        cssClass: 'custom-alert',
+        buttons: [
+          {
+            text: 'Yes',
+            cssClass: 'alert-button-confirm',
+            handler: () => {
+              this.logout()
+            }
+          },
+          {
+            text: 'No',
+            cssClass: 'alert-button-cancel',
+          },
+          
+        ],
+      });
+
+      await alert.present();
+    },
+    logout() {
+      localStorage.removeItem("token");
+      this.router.push("/login");
+    },
   },
   setup() {
     const router = useRouter();
