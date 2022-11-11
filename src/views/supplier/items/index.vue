@@ -22,7 +22,7 @@
                 <ion-select  v-model="selected_status" placeholder="Select Status">
                   <ion-select-option value="">None</ion-select-option>
                   <ion-select-option value="true">Active</ion-select-option>
-                  <ion-select-option value="false">Deactive</ion-select-option>
+                  <ion-select-option value="false">Disable</ion-select-option>
                 </ion-select>
             </ion-list>
           </ion-col>
@@ -34,8 +34,8 @@
                   <img src="https://i.postimg.cc/QMkZFG1K/layers-animat.gif" type="" v-if="item.enabled === true">
                   <img src="https://i.postimg.cc/SRGG9dVr/comp-3.gif" type="" v-if="item.enabled === false">
                   <div class="video-name">{{ item.name.substring(0, 7) }}</div>
-                  <div class="video-by" v-if="item.enabled === true">Status : {{ item.enabled?"Active":"Deactive" }}</div>
-                  <div class="video-by2" v-if="item.enabled === false">Status : {{ item.enabled?"Active":"Deactive" }}</div>
+                  <div class="video-by" v-if="item.enabled === true">Status : {{ item.enabled?"Active":"Disable" }}</div>
+                  <div class="video-by2" v-if="item.enabled === false">Status : {{ item.enabled?"Active":"Disable" }}</div>
                 <div class="video-name2"></div>
               </ion-card>
             </ion-col>

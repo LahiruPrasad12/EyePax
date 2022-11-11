@@ -21,7 +21,7 @@
 
         <ion-card-content>
           <ion-row>
-            <ion-col size="3">
+            <ion-col size="4">
               <ion-label>
                   Supplier ID
               </ion-label>
@@ -37,19 +37,19 @@
               </ion-text>
 
             </ion-col>
-            <ion-col size="6">
+            <ion-col size="5">
               <ion-label>Updated At</ion-label>
               <ion-text color="medium">
                 <h6>{{ Request1.updated_at }}</h6>
               </ion-text>
             </ion-col>
-            <ion-col size="3">
-              <ion-label>Recived At</ion-label>
+            <ion-col size="6">
+              <ion-label>Recived Date</ion-label>
               <ion-text color="medium">
                 <h6>{{ Request1.created_at }}</h6>
               </ion-text>
             </ion-col>
-            <ion-col size="3">
+            <ion-col size="6">
               <ion-label>Due Date</ion-label>
               <ion-text color="medium">
                 <h6>{{ Request1.due_date }}</h6>
