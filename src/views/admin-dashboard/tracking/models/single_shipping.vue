@@ -211,7 +211,7 @@ export default {
       try {
         this.is_loading = true
         this.data = data
-        this.Item = (await trackingAPI.getItem(data.item)).data.data.Item
+        this.Item = (await trackingAPI.getItem(data._id)).data.data.Item
         this.selected_status = data.status
       } catch (e) {
 
