@@ -4,7 +4,8 @@
       <ion-grid>
         <ion-row style="padding-top: 15px; align-items: center;">
           <ion-col>
-            <ion-img class="ion-float-center" routerLink="/" routerDirection="root" src="https://i.postimg.cc/Qd2tjq17/m.png" style="width:50%"/>
+            <ion-img class="ion-float-center" routerLink="/" routerDirection="root"
+              src="https://i.postimg.cc/Qd2tjq17/m.png" style="width:50%" />
           </ion-col>
         </ion-row>
         <ion-row>
@@ -19,14 +20,10 @@
           <div style="border:solid 1px; border-radius: 4px; width:90vw; margin-top: 3vh; ">
             <ion-row>
               <ion-col class="ion-align-self-center" size="1">
-                <ion-icon :icon="mailOutline"/>
+                <ion-icon :icon="mailOutline" />
               </ion-col>
               <ion-col class="ion-align-items-center">
-                <ion-input
-                    v-model="email"
-                    name="email"
-                    placeholder="Email Address"
-                    required/>
+                <ion-input v-model="email" name="email" placeholder="Email Address" required />
               </ion-col>
             </ion-row>
           </div>
@@ -47,17 +44,13 @@
                 <ion-icon :icon="lockClosedOutline"></ion-icon>
               </ion-col>
               <ion-col class="ion-align-items-center">
-                <ion-input
-                    v-model="password"
-                    :type="passwordFieldType"
-                    name="password"
-                    placeholder="Password">
+                <ion-input v-model="password" :type="passwordFieldType" name="password" placeholder="Password">
                 </ion-input>
               </ion-col>
 
               <ion-col v-show="password" id="eyeIcon" class="ion-align-self-center" size="1">
-                <ion-icon v-if="passwordFieldType !== 'password'" :icon="eye" @click="passwordTongle"/>
-                <ion-icon v-else :icon="eyeOff" @click="passwordTongle"/>
+                <ion-icon v-if="passwordFieldType !== 'password'" :icon="eye" @click="passwordTongle" />
+                <ion-icon v-else :icon="eyeOff" @click="passwordTongle" />
               </ion-col>
             </ion-row>
           </div>
@@ -77,11 +70,7 @@
                   border-radius: 4px;">
           <ion-row class="ion-align-items-center ion-justify-content-center">
             <ion-col style="">
-              <ion-button
-                  :disabled="is_btn_loading"
-                  expand="full"
-                  style="height: 50px;"
-                  @click="submit">
+              <ion-button :disabled="is_btn_loading" expand="full" style="height: 50px;" @click="submit">
                 <ion-spinner name="circles" :hidden="!is_btn_loading"></ion-spinner>
                 LOGIN
               </ion-button>
@@ -128,10 +117,10 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/vue';
-import {defineComponent} from 'vue';
-import {useRouter} from "vue-router";
-import {eye, eyeOff, lockClosedOutline, mailOutline} from 'ionicons/icons';
-import {defineRule, useField, useForm} from 'vee-validate';
+import { defineComponent } from 'vue';
+import { useRouter } from "vue-router";
+import { eye, eyeOff, lockClosedOutline, mailOutline } from 'ionicons/icons';
+import { defineRule, useField, useForm } from 'vee-validate';
 import authAPI from '../../apis/modules/auth_api'
 // import {toast} from "@/common/toast";
 
@@ -163,7 +152,7 @@ export default defineComponent({
   },
   data() {
     return {
-      is_btn_loading:false,
+      is_btn_loading: false,
       v: "",
       errors: "",
       email: "",
@@ -222,8 +211,8 @@ export default defineComponent({
     });
 
     // No need to define rules for fields
-    const {value: email, errorMessage: emailError} = useField('email');
-    const {value: password, errorMessage: passwordError} = useField('password');
+    const { value: email, errorMessage: emailError } = useField('email');
+    const { value: password, errorMessage: passwordError } = useField('password');
 
     const router = useRouter();
     return {
@@ -261,12 +250,14 @@ export default defineComponent({
         let respond = (await authAPI.login(payload)).data
         localStorage.setItem('token', respond.token)
         await this.successToast('You are logged in successfully')
-        if(respond.data.user.account_type === 'admin'){
-          window.location = "/admin_home"
-        }else if(respond.data.user.account_type === 'supplier'){
-          window.location = "/supplier/home"
-        }else if(respond.data.user.account_type === 'stock-manager'){
-          window.location = "/stock/home"
+        if (respond.data.user.account_type === 'admin') {
+          this.router.push('/admin_home')
+        } else if (respond.data.user.account_type === 'supplier') {
+          this.router.push('/supplier/home')
+        } else if (respond.data.user.account_type === 'stock-manager') {
+          this.router.push('/stock/home')
+        } else if (respond.data.user.account_type === 'staff') {
+          this.router.push('/orders/home')
         }
       } catch (e) {
         await this.dangerToast(e.message)
@@ -283,7 +274,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 :root {
   --ion-safe-area-top: 20px;
   --ion-safe-area-bottom: 22px;
