@@ -48,7 +48,7 @@
             <ion-col size="6">
               <ion-label style="font-weight:500">Status</ion-label>
               <ion-text color="medium">
-                <h6>{{ item.enabled?"Active":"Deactive" }}</h6>
+                <h6>{{ item.enabled?"Active":"Disable" }}</h6>
               </ion-text>
             </ion-col>
             <ion-col size="12">

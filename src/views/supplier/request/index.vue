@@ -34,9 +34,9 @@
                   <img src="https://i.postimg.cc/KjzNT1Dn/error-img.gif" type="" v-if="request.status === 'Declined'">
                 </div>
                 <div class="video-name"> {{ request.request.substring(0, 14) }}</div>
-                <div class="video-by"  v-if="request.status === 'Approved'">Status : {{ request.status }}</div>
-                <div class="video-by2"  v-if="request.status === 'Declined'">Status : {{ request.status }}</div>
-                <div class="video-by3"  v-if="request.status === 'Pending'">Status : {{ request.status }}</div>
+                <div class="video-by"  v-if="request.status === 'Approved'">{{ request.status }}</div>
+                <div class="video-by2"  v-if="request.status === 'Declined'">{{ request.status }}</div>
+                <div class="video-by3"  v-if="request.status === 'Pending'">{{ request.status }}</div>
                 <div class="video-name2"></div>
               </div>
             </ion-col>

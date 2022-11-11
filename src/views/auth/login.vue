@@ -4,7 +4,7 @@
       <ion-grid>
         <ion-row style="padding-top: 15px; align-items: center;">
           <ion-col>
-            <ion-img class="ion-float-center" src="https://i.postimg.cc/kgPQXz2s/Eyepax-logo.png" style="width:50%"/>
+            <ion-img class="ion-float-center" routerLink="/" routerDirection="root" src="https://i.postimg.cc/Qd2tjq17/m.png" style="width:50%"/>
           </ion-col>
         </ion-row>
         <ion-row>

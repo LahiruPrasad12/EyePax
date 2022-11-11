@@ -31,9 +31,11 @@
           <ion-row>
             <ion-col v-for="staff in all_staff" size="6" @click="openSingleStaffModal(staff)">
               <ion-card class="video anim" style="--delay: .5s; border-color: #0d0d0d;">
-                <img src="https://i.postimg.cc/cHX7WdN6/sup2.jpg" v-if="staff.account_type==='admin'" type="">
+                <img src="https://i.postimg.cc/cHX7WdN6/sup2.jpg" v-if="staff.account_type==='admin'">
                 <img src="https://i.postimg.cc/tRcPNSR0/item2.jpg" v-if="staff.account_type==='supplier'"/>
                 <img src="https://i.postimg.cc/0Nv7Jzkb/staff2.jpg" v-if="staff.account_type === 'staff'"/>
+                <img src="https://i.postimg.cc/pT69krHQ/de2.jpg" v-if="staff.account_type === 'stock-manager'"/>
+
                 <div style="margin-top: auto; color: white; size: 10px; text-align: center">{{ staff.first_name }}</div>
                 <h6 style="margin-top: auto; color: white; size: 5px; text-align: center; margin-left: 5px; margin-right: 5px">{{ staff.email }}</h6>
               </ion-card>

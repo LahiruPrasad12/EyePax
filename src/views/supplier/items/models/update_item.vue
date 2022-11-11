@@ -33,7 +33,7 @@
           <ion-label position="floating">Availabitlity</ion-label>
           <ion-select class="u-input" v-model="form.enabled" placeholder="Select Status">
             <ion-select-option value = "true" >Active</ion-select-option>
-            <ion-select-option value = "false" > Deactive</ion-select-option>
+            <ion-select-option value = "false" > Disable</ion-select-option>
           </ion-select>
         </ion-col>
           <ion-col size="12">

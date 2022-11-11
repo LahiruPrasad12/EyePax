@@ -9,8 +9,8 @@
                  src="https://i.postimg.cc/ZKKjz1yd/diseno-web.gif"></ion-img>
       </div>
       <div style="margin-top:8%" class="ion-text-center padding-header">
-        <h1 >Welcome to EyePax</h1>
-        <h6 style="margin-top:0%">Constructions</h6>
+        <h1 style="font-weight:750">Welcome to IPax</h1>
+        <h6 style="margin-top:0%">CONSTRUCTIONS</h6>
         <div
             class="lorem-header"
             style="
