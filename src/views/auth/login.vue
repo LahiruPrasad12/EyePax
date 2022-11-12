@@ -23,7 +23,7 @@
                 <ion-icon :icon="mailOutline" />
               </ion-col>
               <ion-col class="ion-align-items-center">
-                <ion-input v-model="email" name="email" placeholder="Email Address" required />
+                <ion-input v-model="email" name="email" placeholder="Email Address" required autocomplete="email" />
               </ion-col>
             </ion-row>
           </div>
@@ -44,7 +44,7 @@
                 <ion-icon :icon="lockClosedOutline"></ion-icon>
               </ion-col>
               <ion-col class="ion-align-items-center">
-                <ion-input v-model="password" :type="passwordFieldType" name="password" placeholder="Password">
+                <ion-input v-model="password" :type="passwordFieldType" name="password" placeholder="Password" autocomplete="password">
                 </ion-input>
               </ion-col>
 
